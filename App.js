@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, SafeAreaView, Image, Button} from 'react-native';
 class App extends Component {
 constructor(props) {
 super(props);
@@ -8,12 +8,24 @@ title: 'DSSMV: React-native example',
 };
 }
 render() {
-const title = this.state.title;
-return (
-<View>
-<Text>{title}</Text>
-</View>
-);
+
+export default function App(){
+    return (
+        <SafeAreaView style={styles.container}>
+            <Image source={require('./assets/logo_light.png')}/>
+            <Text>TrandBer</Text>
+            <Button title="Reserve a Book" onPress={() => console.log("Button Clicked")}></Button>
+            <Button title="Management" onPress={() => console.log("Button Clicked")}></Button>
+        </SafeAreaView>
+    );
 }
-}
-export default App;
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor:"#fff",
+        justifyContent: "top"
+    },
+});
+
+}}
