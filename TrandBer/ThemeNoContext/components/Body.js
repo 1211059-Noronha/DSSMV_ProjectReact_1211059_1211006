@@ -1,16 +1,19 @@
+
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
-import Logo from './Logo';
+import Logo from "./Logo";
+
 
 class Body extends Component {
+    constructor(props) {
+        super(props)
+    }
     render() {
-        const { logoBackground } = this.props;
+        const { logoBackground } = this.props.selectedTheme;
         return (
             <View>
                 <Logo logoBackground={logoBackground} />
-                <Text>Your favorite Library, now online</Text>
-            </View>
-        );
+            </View>);
     }
 }
 
