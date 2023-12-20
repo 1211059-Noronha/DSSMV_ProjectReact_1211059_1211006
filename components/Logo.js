@@ -11,7 +11,7 @@ class Logo extends Component {
     render() {
         const { logoBackground } = this.props;
         return (
-            <Image source={require('../figures/iseplogo.png')} style={{ backgroundColor: logoBackground }} />
+            <Image source={require('../assets/logo_light.png')} style={{ backgroundColor: logoBackground }} />
         );
     }
 }
