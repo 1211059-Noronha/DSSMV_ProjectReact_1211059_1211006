@@ -6,12 +6,14 @@ import Footer from '../components/Footer';
 
 function WelcomeScreen(props) {
     return (
-        <View style={styles.logoContainer}>
-            <Image source={require('../assets/logo_light.png')} />
-            <Text>Your favorite Library, now online</Text>
-        </View>
-    <View style={styles.reserveButton}></View>
-    <View style={styles.managementButton}></View>
+        <>
+            <View style={styles.logoContainer}>
+                <Image source={require('../assets/logo_light.png')}/>
+                <Text>Your favorite Library, now online</Text>
+            </View>
+            <View style={styles.reserveButton}></View>
+            <View style={styles.managementButton}></View>
+        </>
 );
 }
 
