@@ -1,8 +1,11 @@
 import React, {Component, useState} from 'react';
 import {View, StyleSheet, Image, StatusBar, Button, TextInput} from 'react-native';
-import WelcomeScreen from "./screens/WelcomeScreen";
+import LogInScreen from './src/screens/LoginScreen';
 
 const API = "http://193.136.62.24/v1/"
+const loginName = 'Log in';
+
+
 
 export default function App() {
     let [libraryUUID, setLibraryUUID] = useState("")
@@ -155,7 +158,18 @@ export default function App() {
             <Button title="Put" onPress={() => putLibrary(UUID)}></Button>
             <Button title="Delete" onPress={() => deleteLibrary(UUID)}></Button>
             <StatusBar style="auto"></StatusBar>
-        </View>
+        </View></NavigationContainer>
+    <Tab.Screen
+        //style={styles.root}
+        name={loginName}
+        component={LogInScreen}
+        options={{
+            tabBarLabel: 'Log in',
+            tabBarIcon: ({color, size}) => (
+                <MaterialCommunityIcons name="login" color={color} size={size} />
+            ),
+        }}
+    />
     )
 
 
@@ -181,8 +195,18 @@ const styles = StyleSheet.create({
 Mais tarde vou fazer compartimentalização mas por agora quero ter certeza que tenho requests a fazer
 
 export default function App(){
-    return(
-        <WelcomeScreen />
-    )
+    return (
+        <NavigationContainer>
+                <Tab.Screen
+                    //style={styles.root}
+                    name={loginName}
+                    component={LogInScreen}
+                    options={{
+                        tabBarLabel: 'Log in',
+                        tabBarIcon: ({color, size}) => (
+                            <MaterialCommunityIcons name="login" color={color} size={size} />
+                        ),
+                    }}
+                />
 }
  */
