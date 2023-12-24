@@ -144,35 +144,43 @@ export default function App() {
 
     */
     return (
-        <View style={styles.container}>
-            <TextInput placeholder='Library UUID' style={styles.input} value={libraryUUID} onChangeText={(value) => setLibraryUUID(value)}></TextInput>
-            <TextInput placeholder='Library Name' style={styles.input} value={libraryName} onChangeText={(value) => setLibraryName(value)}></TextInput>
-            <TextInput placeholder='Library Address' style={styles.input} value={libraryAddress} onChangeText={(value) => setLibraryAddress(value)}></TextInput>
-            <TextInput placeholder='Library Open Day' style={styles.input} value={libraryOpen} onChangeText={(value) => setLibraryOpen(value)}></TextInput>
-            <TextInput placeholder='Library Close Day' style={styles.input} value={libraryClose} onChangeText={(value) => setLibraryClose(value)}></TextInput>
-            <TextInput placeholder='Library Open Time' style={styles.input} value={libraryOpenTime} onChangeText={(value) => setLibraryOpenTime(value)}></TextInput>
-            <TextInput placeholder='Library Close Time' style={styles.input} value={libraryCloseTime} onChangeText={(value) => setLibraryCloseTime(value)}></TextInput>
+
+
+        <NavigationContainer>
+
+            <TextInput placeholder='Library UUID' style={styles.input} value={libraryUUID}
+                       onChangeText={(value) => setLibraryUUID(value)}></TextInput>
+            <TextInput placeholder='Library Name' style={styles.input} value={libraryName}
+                       onChangeText={(value) => setLibraryName(value)}></TextInput>
+            <TextInput placeholder='Library Address' style={styles.input} value={libraryAddress}
+                       onChangeText={(value) => setLibraryAddress(value)}></TextInput>
+            <TextInput placeholder='Library Open Day' style={styles.input} value={libraryOpen}
+                       onChangeText={(value) => setLibraryOpen(value)}></TextInput>
+            <TextInput placeholder='Library Close Day' style={styles.input} value={libraryClose}
+                       onChangeText={(value) => setLibraryClose(value)}></TextInput>
+            <TextInput placeholder='Library Open Time' style={styles.input} value={libraryOpenTime}
+                       onChangeText={(value) => setLibraryOpenTime(value)}></TextInput>
+            <TextInput placeholder='Library Close Time' style={styles.input} value={libraryCloseTime}
+                       onChangeText={(value) => setLibraryCloseTime(value)}></TextInput>
 
             <Button title="Get All" onPress={getLibraries}></Button>
             <Button title="Post" onPress={postLibrary}></Button>
             <Button title="Put" onPress={() => putLibrary(UUID)}></Button>
             <Button title="Delete" onPress={() => deleteLibrary(UUID)}></Button>
             <StatusBar style="auto"></StatusBar>
-        </View></NavigationContainer>
-    <Tab.Screen
-        //style={styles.root}
-        name={loginName}
-        component={LogInScreen}
-        options={{
-            tabBarLabel: 'Log in',
-            tabBarIcon: ({color, size}) => (
-                <MaterialCommunityIcons name="login" color={color} size={size} />
-            ),
-        }}
-    />
+            <Tab.Screen
+                style={styles.root}
+                name={loginName}
+                component={LogInScreen}
+                options={{
+                    tabBarLabel: 'Log in',
+                    tabBarIcon: ({color, size}) => (
+                        <MaterialCommunityIcons name="login" color={color} size={size}/>
+                    ),
+                }}/>
+        </NavigationContainer>
+
     )
-
-
 }
 
 const styles = StyleSheet.create({
