@@ -1,4 +1,4 @@
-import React, {useContext, useEffect, useState} from "react";
+import React, {useContext, useEffect} from "react";
 import { URL_API, fetchGetAllBooksStarted, fetchGetAllBooks } from '../context/Actions';
 import AppContext from '../context/AppContext';
 import {
@@ -7,6 +7,7 @@ import {
 
 
 const BookScreen = ({route,navigation}) => {
+
     const { libraryId } = route.params;
     const renderItem = ({item,index}) =>{
         return(
@@ -20,6 +21,7 @@ const BookScreen = ({route,navigation}) => {
             </View>
         )
     }
+
     const { state, dispatch } = useContext(AppContext);
     const { books } = state;
     const { loading, error, data } = books;
@@ -65,6 +67,7 @@ const BookScreen = ({route,navigation}) => {
                                     renderItem={renderItem}
                                     keyExtractor={(item, index) => index.toString()}
                                 />
+
                             </View>
                         </ScrollView>
                     </View>

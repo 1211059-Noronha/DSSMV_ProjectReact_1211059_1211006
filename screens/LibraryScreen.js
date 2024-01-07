@@ -1,28 +1,18 @@
 import React, {useContext, useEffect, useState} from "react";
 import { URL_API, fetchGetAllLibrariesStarted, fetchGetAllLibraries } from '../context/Actions';
 import AppContext from '../context/AppContext';
-import BookScreen from "./BookScreen";
 import {
-    View, Text, StyleSheet, ScrollView, FlatList, TouchableOpacity,
+    View, Text, StyleSheet, ScrollView, FlatList, TouchableOpacity, Alert,
 } from "react-native";
+import Menu, {
+    MenuProvider,
+    MenuTrigger,
+    MenuOptions,
+    MenuOption,
+    renderers,
+} from 'react-native-popup-menu';
 
 const LibraryScreen = ({navigation}) => {
-
-    const renderItem = ({item,index}) =>{
-        return(
-            <TouchableOpacity onPress={() => {
-                navigation.navigate('BookScreen',{libraryId: item.id})
-            }}>
-                <View style={styles.row}>
-                    <Text style={[styles.cell, {width:100}]}>{item.name}</Text>
-                    <Text style={[styles.cell, {width:300}]}>{item.address}</Text>
-                    <Text style={[styles.cell, {width:200}]}>{item.openDays}</Text>
-                    <Text style={[styles.cell, {width:200}]}>{item.openStatement}</Text>
-                    <Text style={[styles.cell, {width:80}]}>{item.open.toString()}</Text>
-                </View>
-            </TouchableOpacity>
-        )
-    }
 
     const { state, dispatch } = useContext(AppContext);
     const { libraries } = state;
@@ -52,6 +42,7 @@ const LibraryScreen = ({navigation}) => {
         } else {
             if (data.length > 0) {
                 return (
+
                     <View style={styles.container}>
                         <ScrollView horizontal >
                             <View style={styles.listContainer}>
@@ -62,14 +53,39 @@ const LibraryScreen = ({navigation}) => {
                                     <Text style={[styles.headerText, {width: 200,}]}>Open Statement</Text>
                                     <Text style={[styles.headerText, {width: 80,}]}>Open</Text>
                                 </View>
+                                <MenuProvider>
                                 <FlatList
                                     data={data}
-                                    renderItem={renderItem}
+                                    renderItem={({item,index}) => (
+                                        <Menu onSelect={value => Alert.alert(value)}>
+                                            <MenuTrigger>
+                                                    <View style={styles.row}>
+                                                        <Text style={[styles.cell, {width:100}]}>{item.name}</Text>
+                                                        <Text style={[styles.cell, {width:300}]}>{item.address}</Text>
+                                                        <Text style={[styles.cell, {width:200}]}>{item.openDays}</Text>
+                                                        <Text style={[styles.cell, {width:200}]}>{item.openStatement}</Text>
+                                                        <Text style={[styles.cell, {width:80}]}>{item.open.toString()}</Text>
+                                                    </View>
+                                            </MenuTrigger>
+                                            <MenuOptions>
+                                                <MenuOption value="A" text="A" />
+                                                <MenuOption value="B" text="B"  />
+                                                <MenuOption value="C" text="C" />
+                                                <MenuOption value="D" text="D" onSelect={() => navigation.navigate('BookScreen',{libraryId: item.id})}/>
+                                            </MenuOptions>
+                                        </Menu>
+
+
+                                    )}
                                     keyExtractor={(item, index) => index.toString()}
+
+
                                 />
+                                </MenuProvider>
                             </View>
                         </ScrollView>
                     </View>
+
                 );
             } else {
                 return (
@@ -129,5 +145,17 @@ const styles = StyleSheet.create({
         fontFamily: "Gill Sans",
         fontSize: 30,
         flex: 1,
+    },
+    triggerText: {
+        color: 'black',
+    },
+    text: {
+        fontSize: 18,
+    },
+    centeredView: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        marginTop: 22
     }
 })
