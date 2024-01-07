@@ -7,13 +7,40 @@ import {
   FETCH_ALL_LIBRARY_SUCCESS,
   FETCH_ALL_LIBRARY_FAILURE,
   DELETE_ALL_LIBRARY,
+  FETCH_GET_ALL_LIBRARIES_STARTED,
+  FETCH_GET_ALL_LIBRARIES_SUCCESS,
+  FETCH_GET_ALL_LIBRARIES_FAILURE,
+  FETCH_POST_LIBRARY_STARTED,
+  FETCH_POST_LIBRARY_SUCCESS,
+  FETCH_POST_LIBRARY_FAILURE,
+  FETCH_DELETE_LIBRARY_STARTED,
+  FETCH_DELETE_LIBRARY_SUCCESS,
+  FETCH_DELETE_LIBRARY_FAILURE,
+  FETCH_GET_ALL_BOOKS_STARTED,
+  FETCH_GET_ALL_BOOKS_SUCCESS,
+  FETCH_GET_ALL_BOOKS_FAILURE,
+  FETCH_POST_BOOK_STARTED,
+  FETCH_POST_BOOK_SUCCESS,
+  FETCH_POST_BOOK_FAILURE,
+  FETCH_PUT_BOOK_STARTED,
+  FETCH_PUT_BOOK_SUCCESS,
+  FETCH_PUT_BOOK_FAILURE,
+  FETCH_GET_ALL_REVIEWS_STARTED,
+  FETCH_GET_ALL_REVIEWS_SUCCESS,
+  FETCH_GET_ALL_REVIEWS_FAILURE,
+  FETCH_POST_REVIEW_STARTED,
+  FETCH_POST_REVIEW_SUCCESS,
+  FETCH_POST_REVIEW_FAILURE, FETCH_PUT_REVIEW_STARTED, FETCH_PUT_REVIEW_SUCCESS, FETCH_PUT_REVIEW_FAILURE,
 } from './Actions'
 
 
 
 function reducer(state, action) {
   switch (action.type) {
-    case FETCH_LIBRARIES_STARTED:
+
+    //LIBRARIES
+
+    case FETCH_GET_ALL_LIBRARIES_STARTED:
       return {
         ...state,
         libraries: {
@@ -22,7 +49,7 @@ function reducer(state, action) {
           data: []
         }
       }
-    case FETCH_LIBRARIES_SUCCESS:
+    case FETCH_GET_ALL_LIBRARIES_SUCCESS:
       return {
         ...state,
         libraries: {
@@ -31,7 +58,7 @@ function reducer(state, action) {
           data: [...action.payload.data]
         }
       }
-    case FETCH_LIBRARIES_FAILURE:
+    case FETCH_GET_ALL_LIBRARIES_FAILURE:
       return {
         ...state,
         libraries: {
@@ -40,7 +67,7 @@ function reducer(state, action) {
           data: [],
         }
       }
-    case FETCH_ALL_LIBRARY_STARTED:
+    case FETCH_POST_LIBRARY_STARTED:
       return {
         ...state,
         all: {
@@ -50,7 +77,7 @@ function reducer(state, action) {
           id: action.payload.all,
         }
       }
-    case FETCH_ALL_LIBRARY_SUCCESS:
+    case FETCH_POST_LIBRARY_SUCCESS:
       return {
         ...state,
         all: {
@@ -60,7 +87,7 @@ function reducer(state, action) {
           id: state.all.id,
         }
       }
-    case FETCH_ALL_LIBRARY_FAILURE:
+    case FETCH_POST_LIBRARY_FAILURE:
       return {
         ...state,
         all: {
@@ -70,12 +97,212 @@ function reducer(state, action) {
           id: 0,
         }
       }
-    case DELETE_ALL_LIBRARY:
+    case FETCH_DELETE_LIBRARY_STARTED:
+      return {
+        ...state,
+        all: {
+          loading: true,
+          error: null,
+          data: [],
+          id: action.payload.all,
+        }
+      }
+    case FETCH_DELETE_LIBRARY_SUCCESS:
       return {
         ...state,
         all: {
           loading: false,
           error: null,
+          data: [...action.payload.data],
+          id: action.payload.all,
+        }
+      }
+    case FETCH_DELETE_LIBRARY_FAILURE:
+      return {
+        ...state,
+        all: {
+          loading: false,
+          error: action.payload.error,
+          data: [],
+          id: 0,
+        }
+      }
+
+      //BOOKS
+
+    case FETCH_GET_ALL_BOOKS_STARTED:
+      return {
+        ...state,
+        books: {
+          loading: true,
+          error: null,
+          data: []
+        }
+      }
+    case FETCH_GET_ALL_BOOKS_SUCCESS:
+      return {
+        ...state,
+        books: {
+          loading: false,
+          error: null,
+          data: [...action.payload.data]
+        }
+      }
+    case FETCH_GET_ALL_BOOKS_FAILURE:
+      return {
+        ...state,
+        books: {
+          loading: false,
+          error: action.payload.error,
+          data: [],
+        }
+      }
+    case FETCH_POST_BOOK_STARTED:
+      return {
+        ...state,
+        all: {
+          loading: true,
+          error: null,
+          data: [],
+          id: action.payload.all,
+        }
+      }
+    case FETCH_POST_BOOK_SUCCESS:
+      return {
+        ...state,
+        all: {
+          loading: false,
+          error: null,
+          data: [...action.payload.data],
+          id: state.all.id,
+        }
+      }
+    case FETCH_POST_BOOK_FAILURE:
+      return {
+        ...state,
+        all: {
+          loading: false,
+          error: action.payload.error,
+          data: [],
+          id: 0,
+        }
+      }
+    case FETCH_PUT_BOOK_STARTED:
+      return {
+        ...state,
+        all: {
+          loading: true,
+          error: null,
+          data: [],
+          id: action.payload.all,
+        }
+      }
+    case FETCH_PUT_BOOK_SUCCESS:
+      return {
+        ...state,
+        all: {
+          loading: false,
+          error: null,
+          data: [...action.payload.data],
+          id: action.payload.all,
+        }
+      }
+    case FETCH_PUT_BOOK_FAILURE:
+      return {
+        ...state,
+        all: {
+          loading: false,
+          error: action.payload.error,
+          data: [],
+          id: 0,
+        }
+      }
+
+      //REVIEWS
+
+    case FETCH_GET_ALL_REVIEWS_STARTED:
+      return {
+        ...state,
+        reviews: {
+          loading: true,
+          error: null,
+          data: []
+        }
+      }
+    case FETCH_GET_ALL_REVIEWS_SUCCESS:
+      return {
+        ...state,
+        reviews: {
+          loading: false,
+          error: null,
+          data: [...action.payload.data]
+        }
+      }
+    case FETCH_GET_ALL_REVIEWS_FAILURE:
+      return {
+        ...state,
+        reviews: {
+          loading: false,
+          error: action.payload.error,
+          data: [],
+        }
+      }
+    case FETCH_POST_REVIEW_STARTED:
+      return {
+        ...state,
+        all: {
+          loading: true,
+          error: null,
+          data: [],
+          id: action.payload.all,
+        }
+      }
+    case FETCH_POST_REVIEW_SUCCESS:
+      return {
+        ...state,
+        all: {
+          loading: false,
+          error: null,
+          data: [...action.payload.data],
+          id: state.all.id,
+        }
+      }
+    case FETCH_POST_REVIEW_FAILURE:
+      return {
+        ...state,
+        all: {
+          loading: false,
+          error: action.payload.error,
+          data: [],
+          id: 0,
+        }
+      }
+    case FETCH_PUT_REVIEW_STARTED:
+      return {
+        ...state,
+        all: {
+          loading: true,
+          error: null,
+          data: [],
+          id: action.payload.all,
+        }
+      }
+    case FETCH_PUT_REVIEW_SUCCESS:
+      return {
+        ...state,
+        all: {
+          loading: false,
+          error: null,
+          data: [...action.payload.data],
+          id: action.payload.all,
+        }
+      }
+    case FETCH_PUT_REVIEW_FAILURE:
+      return {
+        ...state,
+        all: {
+          loading: false,
+          error: action.payload.error,
           data: [],
           id: 0,
         }
