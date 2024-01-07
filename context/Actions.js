@@ -426,3 +426,94 @@ export function deleteAllLibrary() {
     type: DELETE_ALL_LIBRARY,
   }
 }
+
+// CHECKOUT BOOK
+export const FETCH_CHECKOUT_BOOK_STARTED = 'FETCH_CHECKOUT_BOOK_STARTED';
+export const FETCH_CHECKOUT_BOOK_SUCCESS = 'FETCH_CHECKOUT_BOOK_SUCCESS';
+export const FETCH_CHECKOUT_BOOK_FAILURE = 'FETCH_CHECKOUT_BOOK_FAILURE';
+
+export function fetchCheckoutBook(url, request, dispatch) {
+  dispatch(fetchCheckoutBookStarted());
+
+  fetch(url, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(request),
+  })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Checkout failed');
+      }
+      return response.json();
+    })
+    .then(data => {
+      dispatch(fetchCheckoutBookSuccess(data));
+    })
+    .catch(error => {
+      dispatch(fetchCheckoutBookFailure(error.message));
+    });
+}
+
+// Checkout Book States
+export function fetchCheckoutBookStarted() {
+  return {
+    type: FETCH_CHECKOUT_BOOK_STARTED,
+  };
+}
+
+export function fetchCheckoutBookSuccess(book) {
+  return {
+    type: FETCH_CHECKOUT_BOOK_SUCCESS,
+    payload: {
+      data: [...book],
+    },
+  };
+}
+
+export function fetchCheckoutBookFailure(message) {
+  return {
+    type: FETCH_CHECKOUT_BOOK_FAILURE,
+    payload: {
+      error: message,
+    },
+  };
+}
+
+export const FETCH_GET_ALL_CHECKED_OUT_BOOKS_STARTED = 'FETCH_GET_ALL_CHECKED_OUT_BOOKS_STARTED';
+export const FETCH_GET_ALL_CHECKED_OUT_BOOKS_SUCCESS = 'FETCH_GET_ALL_CHECKED_OUT_BOOKS_SUCCESS';
+export const FETCH_GET_ALL_CHECKED_OUT_BOOKS_FAILURE = 'FETCH_GET_ALL_CHECKED_OUT_BOOKS_FAILURE';
+
+export function fetchGetAllCheckedOutBooks(url, request, dispatch) {
+  const success = (res) => dispatch(fetchGetAllCheckedOutBooksSuccess(res));
+  const failure = (err) => dispatch(fetchGetAllCheckedOutBooksFailure(err.message));
+  makeHTTPRequest(url, request, success, failure);
+}
+
+// Get All Checked Out Books States
+export function fetchGetAllCheckedOutBooksStarted() {
+  return {
+    type: FETCH_GET_ALL_CHECKED_OUT_BOOKS_STARTED,
+  };
+}
+
+export function fetchGetAllCheckedOutBooksSuccess(checkedOutBooks) {
+  return {
+    type: FETCH_GET_ALL_CHECKED_OUT_BOOKS_SUCCESS,
+    payload: {
+      data: [...checkedOutBooks],
+    },
+  };
+}
+
+export function fetchGetAllCheckedOutBooksFailure(message) {
+  return {
+    type: FETCH_GET_ALL_CHECKED_OUT_BOOKS_FAILURE,
+    payload: {
+      error: message,
+    },
+  };
+}
+
+
