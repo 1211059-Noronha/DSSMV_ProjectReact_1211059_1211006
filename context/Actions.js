@@ -409,24 +409,6 @@ export function fetchPutReviewFailure(message) {
 }
 
 
-
-
-
-
-
-
-
-
-//Old Code Teacher used and I still don't know what it does because ToDos just doesn't run
-export const DELETE_ALL_LIBRARY = 'DELETE_ALL_LIBRARY';
-
-  //Delete Library States
-export function deleteAllLibrary() {
-  return {
-    type: DELETE_ALL_LIBRARY,
-  }
-}
-
 // CHECKOUT BOOK
 export const FETCH_CHECKOUT_BOOK_STARTED = 'FETCH_CHECKOUT_BOOK_STARTED';
 export const FETCH_CHECKOUT_BOOK_SUCCESS = 'FETCH_CHECKOUT_BOOK_SUCCESS';
@@ -442,18 +424,18 @@ export function fetchCheckoutBook(url, request, dispatch) {
     },
     body: JSON.stringify(request),
   })
-    .then(response => {
-      if (!response.ok) {
-        throw new Error('Checkout failed');
-      }
-      return response.json();
-    })
-    .then(data => {
-      dispatch(fetchCheckoutBookSuccess(data));
-    })
-    .catch(error => {
-      dispatch(fetchCheckoutBookFailure(error.message));
-    });
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Checkout failed');
+        }
+        return response.json();
+      })
+      .then(data => {
+        dispatch(fetchCheckoutBookSuccess(data));
+      })
+      .catch(error => {
+        dispatch(fetchCheckoutBookFailure(error.message));
+      });
 }
 
 // Checkout Book States
@@ -481,6 +463,7 @@ export function fetchCheckoutBookFailure(message) {
   };
 }
 
+//GET ALL USER CHECKED OUT BOOKS
 export const FETCH_GET_ALL_CHECKED_OUT_BOOKS_STARTED = 'FETCH_GET_ALL_CHECKED_OUT_BOOKS_STARTED';
 export const FETCH_GET_ALL_CHECKED_OUT_BOOKS_SUCCESS = 'FETCH_GET_ALL_CHECKED_OUT_BOOKS_SUCCESS';
 export const FETCH_GET_ALL_CHECKED_OUT_BOOKS_FAILURE = 'FETCH_GET_ALL_CHECKED_OUT_BOOKS_FAILURE';
@@ -489,9 +472,10 @@ export function fetchGetAllCheckedOutBooks(url, request, dispatch) {
   const success = (res) => dispatch(fetchGetAllCheckedOutBooksSuccess(res));
   const failure = (err) => dispatch(fetchGetAllCheckedOutBooksFailure(err.message));
   makeHTTPRequest(url, request, success, failure);
+
 }
 
-// Get All Checked Out Books States
+// Get All User Checked Out Books States
 export function fetchGetAllCheckedOutBooksStarted() {
   return {
     type: FETCH_GET_ALL_CHECKED_OUT_BOOKS_STARTED,
@@ -505,6 +489,7 @@ export function fetchGetAllCheckedOutBooksSuccess(checkedOutBooks) {
       data: [...checkedOutBooks],
     },
   };
+
 }
 
 export function fetchGetAllCheckedOutBooksFailure(message) {
@@ -516,4 +501,55 @@ export function fetchGetAllCheckedOutBooksFailure(message) {
   };
 }
 
+export const FETCH_GET_ALL_CHECK_OUT_HISTORY_BOOKS_STARTED = 'FETCH_GET_ALL_CHECK_OUT_HISTORY_BOOKS_STARTED';
+export const FETCH_GET_ALL_CHECK_OUT_HISTORY_BOOKS_SUCCESS = 'FETCH_GET_ALL_CHECK_OUT_HISTORY_BOOKS_SUCCESS';
+export const FETCH_GET_ALL_CHECK_OUT_HISTORY_BOOKS_FAILURE = 'FETCH_GET_ALL_CHECK_OUT_HISTORY_BOOKS_FAILURE';
 
+export function fetchGetAllCheckOutHistoryBooks(url, request, dispatch) {
+  const success = (res) => dispatch(fetchGetAllCheckOutHistoryBooksSuccess(res));
+  const failure = (err) => dispatch(fetchGetAllCheckOutHistoryBooksFailure(err.message));
+  makeHTTPRequest(url, request, success, failure);
+
+}
+
+// Get All Checked Out Books States
+export function fetchGetAllCheckOutHistoryBooksStarted() {
+  return {
+    type: FETCH_GET_ALL_CHECK_OUT_HISTORY_BOOKS_STARTED,
+  };
+}
+
+export function fetchGetAllCheckOutHistoryBooksSuccess(checkOutHistoryBooks) {
+  return {
+    type: FETCH_GET_ALL_CHECK_OUT_HISTORY_BOOKS_SUCCESS,
+    payload: {
+      data: [...checkOutHistoryBooks],
+    },
+  };
+
+}
+
+export function fetchGetAllCheckOutHistoryBooksFailure(message) {
+  return {
+    type: FETCH_GET_ALL_CHECK_OUT_HISTORY_BOOKS_FAILURE,
+    payload: {
+      error: message,
+    },
+  };
+}
+
+
+
+
+
+
+
+//Old Code Teacher used and I still don't know what it does because ToDos just doesn't run
+export const DELETE_ALL_LIBRARY = 'DELETE_ALL_LIBRARY';
+
+  //Delete Library States
+export function deleteAllLibrary() {
+  return {
+    type: DELETE_ALL_LIBRARY,
+  }
+}

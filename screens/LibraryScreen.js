@@ -3,7 +3,6 @@ import {
     URL_API,
     fetchGetAllLibrariesStarted,
     fetchGetAllLibraries,
-    fetchDeleteLibraryStarted, fetchDeleteLibrary
 } from '../context/Actions';
 import AppContext from '../context/AppContext';
 import {

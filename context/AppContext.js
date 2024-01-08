@@ -4,5 +4,4 @@ import HomeScreen from "../screens/HomeScreen";
 
 const AppContext = React.createContext();
 export const {Provider} = AppContext;
-
 export default AppContext;

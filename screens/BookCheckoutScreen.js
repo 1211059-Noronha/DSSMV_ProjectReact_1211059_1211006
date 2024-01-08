@@ -34,7 +34,6 @@ const BookCheckoutScreen = ({ route, navigation }) => {
     };
 
     const handleCheckoutConfirmed = (book) => {
-
       const checkoutUrl = `${URL_API}/library/${libraryId}/book/${book.book.id}/checkout`;
       const checkoutRequest = {}; // Add any additional data needed for checkout
       fetchCheckoutBook(checkoutUrl, checkoutRequest, dispatch);
@@ -42,17 +41,17 @@ const BookCheckoutScreen = ({ route, navigation }) => {
 
     return (
       <View style={styles.row}>
-      <Text style={[styles.cell, { width: 200 }]}>{item.book.title}</Text>
-    <Text style={[styles.cell, { width: 200 }]}>{item.book.authors.name}</Text>
-    <Text style={[styles.cell, { width: 200 }]}>{item.book.description}</Text>
-    <Text style={[styles.cell, { width: 200 }]}>{item.book.publishDate}</Text>
-    <Text style={[styles.cell, { width: 200 }]}>{item.book.isbn}</Text>
-    <Text style={[styles.cell, { width: 200 }]}>{item.available}</Text>
-    <TouchableOpacity onPress={handleCheckout}>
-      <Text style={[styles.cell, { width: 200, color: "blue" }]}>Checkout</Text>
-    </TouchableOpacity>
-    </View>
-  );
+        <Text style={[styles.cell, { width: 200 }]}>{item.book.title}</Text>
+        <Text style={[styles.cell, { width: 200 }]}>{item.book.authors.name}</Text>
+        <Text style={[styles.cell, { width: 200 }]}>{item.book.description}</Text>
+        <Text style={[styles.cell, { width: 200 }]}>{item.book.publishDate}</Text>
+        <Text style={[styles.cell, { width: 200 }]}>{item.book.isbn}</Text>
+        <Text style={[styles.cell, { width: 200 }]}>{item.available}</Text>
+        <TouchableOpacity onPress={handleCheckout}>
+          <Text style={[styles.cell, { width: 200, color: "blue" }]}>Checkout</Text>
+        </TouchableOpacity>
+      </View>
+    );
   };
 
   const { state, dispatch } = useContext(AppContext);

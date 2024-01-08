@@ -30,13 +30,27 @@ import {
   FETCH_GET_ALL_REVIEWS_FAILURE,
   FETCH_POST_REVIEW_STARTED,
   FETCH_POST_REVIEW_SUCCESS,
-  FETCH_POST_REVIEW_FAILURE, FETCH_PUT_REVIEW_STARTED, FETCH_PUT_REVIEW_SUCCESS, FETCH_PUT_REVIEW_FAILURE,
-  FETCH_CHECKOUT_BOOK_STARTED, FETCH_CHECKOUT_BOOK_SUCCESS, FETCH_CHECKOUT_BOOK_FAILURE, FETCH_GET_ALL_CHECKED_OUT_BOOKS_STARTED, FETCH_GET_ALL_CHECKED_OUT_BOOKS_SUCCESS, FETCH_GET_ALL_CHECKED_OUT_BOOKS_FAILURE
+  FETCH_POST_REVIEW_FAILURE,
+  FETCH_PUT_REVIEW_STARTED,
+  FETCH_PUT_REVIEW_SUCCESS,
+  FETCH_PUT_REVIEW_FAILURE,
+  FETCH_CHECKOUT_BOOK_STARTED,
+  FETCH_CHECKOUT_BOOK_SUCCESS,
+  FETCH_CHECKOUT_BOOK_FAILURE,
+  FETCH_GET_ALL_CHECKED_OUT_BOOKS_STARTED,
+  FETCH_GET_ALL_CHECKED_OUT_BOOKS_SUCCESS,
+  FETCH_GET_ALL_CHECKED_OUT_BOOKS_FAILURE,
+  FETCH_GET_ALL_CHECK_OUT_HISTORY_BOOKS_STARTED,
+  FETCH_GET_ALL_CHECK_OUT_HISTORY_BOOKS_SUCCESS,
+  FETCH_GET_ALL_CHECK_OUT_HISTORY_BOOKS_FAILURE
 } from './Actions'
 
 
 
 function reducer(state, action) {
+
+  console.log(action)
+
   switch (action.type) {
 
     //LIBRARIES
@@ -306,6 +320,9 @@ function reducer(state, action) {
           id: 0,
         }
       }
+
+      //Checkout
+
     case FETCH_CHECKOUT_BOOK_STARTED:
       return {
         ...state,
@@ -321,7 +338,7 @@ function reducer(state, action) {
         checkoutBook: {
           loading: false,
           error: null,
-          data: action.payload.data,
+          data: [...action.payload.data],
         }
       }
     case FETCH_CHECKOUT_BOOK_FAILURE:
@@ -330,9 +347,44 @@ function reducer(state, action) {
         checkoutBook: {
           loading: false,
           error: action.payload.error,
-          data: null,
+          data: [],
         }
       }
+
+      //Get Checkout History
+
+    case FETCH_GET_ALL_CHECK_OUT_HISTORY_BOOKS_STARTED:
+      return {
+        ...state,
+        checkOutHistoryBooks: {
+          loading1: true,
+          error1: null,
+          data1: [],
+        },
+      };
+
+    case FETCH_GET_ALL_CHECK_OUT_HISTORY_BOOKS_SUCCESS:
+      return {
+        ...state,
+        checkOutHistoryBooks: {
+          loading1: false,
+          error1: null,
+          data1: [...action.payload.data],
+        },
+      };
+
+    case FETCH_GET_ALL_CHECK_OUT_HISTORY_BOOKS_FAILURE:
+      return {
+        ...state,
+        checkOutHistoryBooks: {
+          loading1: false,
+          error1: action.payload.error,
+          data1: [],
+        },
+      };
+
+      //Get Checkedout
+
     case FETCH_GET_ALL_CHECKED_OUT_BOOKS_STARTED:
       return {
         ...state,
@@ -349,7 +401,7 @@ function reducer(state, action) {
         checkedOutBooks: {
           loading: false,
           error: null,
-          data: action.payload.data,
+          data: [...action.payload.data],
         },
       };
 
@@ -362,6 +414,8 @@ function reducer(state, action) {
           data: [],
         },
       };
+
+
 
     default:
       return state

@@ -58,9 +58,7 @@ const ReviewScreen = ({route,navigation}) => {
                 );
             } else {
                 if (data.length > 0) {
-                    console.log(data)
                     return (
-
                         <View style={styles.container}>
                             <ScrollView horizontal >
                                 <View style={styles.listContainer}>
@@ -84,8 +82,6 @@ const ReviewScreen = ({route,navigation}) => {
                                                         <MenuOption value="Update Review" text="Update Review" />
                                                     </MenuOptions>
                                                 </Menu>
-
-
                                             )}
                                             keyExtractor={(item, index) => index.toString()}
                                             refreshing={refreshing}

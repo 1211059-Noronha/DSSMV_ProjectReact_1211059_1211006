@@ -16,7 +16,10 @@ const BookScreen = ({route,navigation}) => {
     const { state, dispatch } = useContext(AppContext);
     const { books } = state;
     const { loading, error, data } = books;
+
     const [textData , setTextData] = useState("Insert Username");
+
+    const [refreshing,setRefreshing] = useState(false)
 
     const handleRefresh = () => {
         dispatch(fetchGetAllBooksStarted());

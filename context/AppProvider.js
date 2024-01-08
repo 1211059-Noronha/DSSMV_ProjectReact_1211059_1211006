@@ -3,7 +3,6 @@ import React, {useReducer, useState} from 'react';
 import PropTypes from "prop-types";
 import { Provider } from './AppContext';
 import reducer from './Reducer';
-import HomeScreen from "../screens/HomeScreen";
 
 /*
 
@@ -26,6 +25,16 @@ const initialState = {
     loading: true,
     error: null,
     data: [],
+  },
+  checkedOutBooks: {
+    loading: true,
+    error: null,
+    data: [],
+  },
+  checkOutHistoryBooks: {
+    loading1: true,
+    error1: null,
+    data1: [],
   },
   all: {
     id: 0,
@@ -107,6 +116,45 @@ const review_labels = {
   reviewer : "reviewer"
 }
 
+//CheckOut Related Labels
+
+const checkedout_labels = {
+  id : "id",
+  bookId : "bookId",
+  libraryId : "libraryId",
+  userId : "userId",
+  active : "active",
+  dueDate : "dueDate",
+  createTimestamp : "createTimestamp",
+  updateTimestamp : "updateTimestamp",
+  libraryName : "libraryName",
+  libraryAddress : "libraryAddress",
+  libraryOpenTime : "libraryOpenTime",
+  libraryCloseTime : "libraryCloseTime",
+  book : book,
+}
+
+const checkout_labels = {
+  active : "active",
+  book : book,
+}
+
+const checkouthistory_labels = {
+  id : "id",
+  bookId : "bookId",
+  libraryId : "libraryId",
+  userId : "userId",
+  active : "active",
+  dueDate : "dueDate",
+  createTimestamp : "createTimestamp",
+  updateTimestamp : "updateTimestamp",
+  libraryName : "libraryName",
+  libraryAddress : "libraryAddress",
+  libraryOpenTime : "libraryOpenTime",
+  libraryCloseTime : "libraryCloseTime",
+  book : book,
+}
+
 
 
 /*
@@ -118,13 +166,14 @@ const review_labels = {
 const AppProvider = (props) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-
   return (
     <Provider value={{
       state,
       library_labels,
       book_labels,
       review_labels,
+      checkedout_labels,
+      checkouthistory_labels,
       dispatch
     }}>
       {props.children}
