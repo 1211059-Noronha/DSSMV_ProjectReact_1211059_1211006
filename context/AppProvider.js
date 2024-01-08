@@ -1,8 +1,9 @@
 
-import React, { useReducer } from 'react';
+import React, {useReducer, useState} from 'react';
 import PropTypes from "prop-types";
 import { Provider } from './AppContext';
 import reducer from './Reducer';
+import HomeScreen from "../screens/HomeScreen";
 
 /*
 
@@ -55,13 +56,19 @@ const library_labels = {
 
 //Book Related Labels
 
-const book_labels  = {
-  available : "available",
-  book : book,
-  checkedOut : "checkedOut",
-  isbn : "isbn",
-  library : library_labels,
-  stock : "stock"
+const authors = {
+  alternateNames : "alternateNames",
+  bio : "bio",
+  birthDate : "birthDate",
+  deathDate : "deathDate",
+  id : "id",
+  name : "name"
+}
+
+const cover = {
+  largeUrl : "largeUrl",
+  mediumUrl : "mediumUrl",
+  smallUrl : "smallUrl"
 }
 
 const book = {
@@ -79,20 +86,15 @@ const book = {
   title : "title",
 }
 
-const authors = {
-  alternateNames : "alternateNames",
-  bio : "bio",
-  birthDate : "birthDate",
-  deathDate : "deathDate",
-  id : "id",
-  name : "name"
+const book_labels  = {
+  available : "available",
+  book : book,
+  checkedOut : "checkedOut",
+  isbn : "isbn",
+  library : library_labels,
+  stock : "stock"
 }
 
-const cover = {
-  largeUrl : "largeUrl",
-  mediumUrl : "mediumUrl",
-  smallUrl : "smallUrl"
-}
 
 //Review Related Labels
 
@@ -115,6 +117,8 @@ const review_labels = {
 
 const AppProvider = (props) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+
   return (
     <Provider value={{
       state,

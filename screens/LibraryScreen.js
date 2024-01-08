@@ -1,5 +1,10 @@
 import React, {useContext, useEffect, useState} from "react";
-import { URL_API, fetchGetAllLibrariesStarted, fetchGetAllLibraries } from '../context/Actions';
+import {
+    URL_API,
+    fetchGetAllLibrariesStarted,
+    fetchGetAllLibraries,
+    fetchDeleteLibraryStarted, fetchDeleteLibrary
+} from '../context/Actions';
 import AppContext from '../context/AppContext';
 import {
     View, Text, StyleSheet, ScrollView, FlatList, TouchableOpacity, Alert,
@@ -17,6 +22,19 @@ const LibraryScreen = ({navigation}) => {
     const { state, dispatch } = useContext(AppContext);
     const { libraries } = state;
     const { loading, error, data } = libraries;
+
+    const [refreshing,setRefreshing] = useState(false)
+
+    const handleRefresh = () => {
+        setRefreshing(true)
+
+        dispatch(fetchGetAllLibrariesStarted());
+        const url = `${URL_API}/library`;
+        const request = {};
+        fetchGetAllLibraries(url, request, dispatch);
+
+        setRefreshing(false)
+    }
 
     useEffect(() => {
         dispatch(fetchGetAllLibrariesStarted());
@@ -53,7 +71,6 @@ const LibraryScreen = ({navigation}) => {
                                     <Text style={[styles.headerText, {width: 200,}]}>Open Statement</Text>
                                     <Text style={[styles.headerText, {width: 80,}]}>Open</Text>
                                 </View>
-                                <MenuProvider>
                                 <FlatList
                                     data={data}
                                     renderItem={({item,index}) => (
@@ -68,20 +85,20 @@ const LibraryScreen = ({navigation}) => {
                                                     </View>
                                             </MenuTrigger>
                                             <MenuOptions>
-                                                <MenuOption value="A" text="A" />
-                                                <MenuOption value="B" text="B"  />
-                                                <MenuOption value="C" text="C" />
-                                                <MenuOption value="D" text="D" onSelect={() => navigation.navigate('BookScreen',{libraryId: item.id})}/>
+                                                <MenuOption value="Add Library" text="Add Library" />
+                                                <MenuOption value="Edit Library" text="Edit Library"  />
+                                                <MenuOption value="Delete Library" text="Delete Library"  onSelect={() => {
+                                                        navigation.navigate('DeleteLibrary',{libraryId: item.id})
+                                                    }
+                                                }/>
+                                                <MenuOption value="Book From Library" text="Books From This Library" onSelect={() => navigation.navigate('BookScreen',{libraryId: item.id})}/>
                                             </MenuOptions>
                                         </Menu>
-
-
                                     )}
                                     keyExtractor={(item, index) => index.toString()}
-
-
+                                    refreshing={refreshing}
+                                    onRefresh={handleRefresh}
                                 />
-                                </MenuProvider>
                             </View>
                         </ScrollView>
                     </View>

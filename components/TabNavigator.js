@@ -10,6 +10,10 @@ import HomeScreen from '../screens/HomeScreen';
 import ManagementScreen from '../screens/ManagementScreen';
 import BookScreen from "../screens/BookScreen";
 import LibraryScreen from "../screens/LibraryScreen";
+import ReviewScreen from "../screens/ReviewScreen";
+import DeleteLibrary from "../components/DeleteLibrary";
+import BookCheckoutScreen from "../screens/BookCheckoutScreen";
+import GetCheckoutBookScreen from "../screens/GetCheckoutBookScreen";
 
 
 //Screen names
@@ -18,19 +22,28 @@ const managementName = "Management";
 const libraryName = "Libraries"
 const bookName = "BookTable"
 
+import {createStore} from 'state-pool';
+
+
 const Stack = createStackNavigator()
 const Tab = createBottomTabNavigator();
+const store = createStore();
 
 const LibraryStack = () => {
     return (
         <Stack.Navigator initialRouteName="HomeScreen" screenOptions={{headerShown: true}}>
             <Stack.Screen name="LibraryScreen" component={LibraryScreen} />
             <Stack.Screen name="BookScreen" component={BookScreen} />
+            <Stack.Screen name="ReviewScreen" component={ReviewScreen}/>
+            <Stack.Screen name="DeleteLibrary" component={DeleteLibrary}/>
+            <Stack.Screen name="BookCheckout" component={BookCheckoutScreen}/>
+            <Stack.Screen name="GetCheckoutBookScreen" component={GetCheckoutBookScreen}/>
         </Stack.Navigator>
     )
 }
 
 function TabNavigator() {
+
     return (
         <Tab.Navigator
             initialRouteName={homeName}

@@ -105,7 +105,6 @@ function reducer(state, action) {
           loading: true,
           error: null,
           data: [],
-          id: action.payload.all,
         }
       }
     case FETCH_DELETE_LIBRARY_SUCCESS:
@@ -115,7 +114,6 @@ function reducer(state, action) {
           loading: false,
           error: null,
           data: [...action.payload.data],
-          id: action.payload.all,
         }
       }
     case FETCH_DELETE_LIBRARY_FAILURE:
@@ -123,7 +121,7 @@ function reducer(state, action) {
         ...state,
         all: {
           loading: false,
-          error: action.payload.error,
+          error: true,
           data: [],
           id: 0,
         }

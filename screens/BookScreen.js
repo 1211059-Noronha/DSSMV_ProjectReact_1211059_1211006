@@ -1,35 +1,34 @@
-import React, {useContext, useEffect} from "react";
+import React, {useContext, useEffect, useState} from "react";
 import { URL_API, fetchGetAllBooksStarted, fetchGetAllBooks } from '../context/Actions';
 import AppContext from '../context/AppContext';
 import {
-    View,Text, StyleSheet,ScrollView,FlatList,
+    View, Text, StyleSheet, ScrollView, FlatList, TextInput, Alert
 } from "react-native";
+import Menu, {MenuOption, MenuOptions, MenuProvider, MenuTrigger} from "react-native-popup-menu";
+
 
 
 const BookScreen = ({route,navigation}) => {
 
+    //Library Selected from LibraryScreen
     const { libraryId } = route.params;
-    const renderItem = ({item,index}) =>{
-        return(
-            <View style={styles.row}>
-                <Text style={[styles.cell, {width:200}]}>{item.book.title}</Text>
-                <Text style={[styles.cell, {width:200}]}>{item.book.authors.name}</Text>
-                <Text style={[styles.cell, {width:200}]}>{item.book.description}</Text>
-                <Text style={[styles.cell, {width:200}]}>{item.book.publishDate}</Text>
-                <Text style={[styles.cell, {width:200}]}>{item.book.isbn}</Text>
-                <Text style={[styles.cell, {width:200}]}>{item.available}</Text>
-            </View>
-        )
-    }
 
     const { state, dispatch } = useContext(AppContext);
     const { books } = state;
     const { loading, error, data } = books;
+    const [textData , setTextData] = useState("Insert Username");
+
+    const handleRefresh = () => {
+        dispatch(fetchGetAllBooksStarted());
+        const url = `${URL_API}/library/`+libraryId+"/book";
+        const request = {};
+        fetchGetAllBooks(url, request, dispatch);
+    }
+
 
     useEffect(() => {
         dispatch(fetchGetAllBooksStarted());
         const url = `${URL_API}/library/`+libraryId+"/book";
-        //const url = `${URL_API}/library/bb385aa2-866f-419b-85fd-202ecec8cfde/book`;
         const request = {};
         fetchGetAllBooks(url, request, dispatch);
     },[]);
@@ -52,6 +51,13 @@ const BookScreen = ({route,navigation}) => {
             if (data.length > 0) {
                 return (
                     <View style={styles.container}>
+                        <TextInput
+                            style={styles.box}
+                            value={textData}
+                            onChangeText={(text) => {
+                                setTextData(text);
+                            }}
+                        />
                         <ScrollView horizontal>
                             <View style={styles.listContainer}>
                                 <View style={styles.header}>
@@ -62,12 +68,32 @@ const BookScreen = ({route,navigation}) => {
                                     <Text style={[styles.headerText, {width: 200,}]}>isbn</Text>
                                     <Text style={[styles.headerText, {width: 200,}]}>Available Books</Text>
                                 </View>
-                                <FlatList
-                                    data={data}
-                                    renderItem={renderItem}
-                                    keyExtractor={(item, index) => index.toString()}
-                                />
-
+                                    <FlatList
+                                        data={data}
+                                        renderItem={({item,index}) => (
+                                            <Menu onSelect={value => Alert.alert(value)}>
+                                                <MenuTrigger>
+                                                    <View style={styles.row}>
+                                                        <Text style={[styles.cell, {width:200}]}>{item.book.title}</Text>
+                                                        <Text style={[styles.cell, {width:200}]}>{item.book.authors.name}</Text>
+                                                        <Text style={[styles.cell, {width:200}]}>{item.book.description}</Text>
+                                                        <Text style={[styles.cell, {width:200}]}>{item.book.publishDate}</Text>
+                                                        <Text style={[styles.cell, {width:200}]}>{item.book.isbn}</Text>
+                                                        <Text style={[styles.cell, {width:200}]}>{item.available}</Text>
+                                                    </View>
+                                                </MenuTrigger>
+                                                <MenuOptions>
+                                                    <MenuOption value="Add Book Stock" text="Add Book Stock"  />
+                                                    <MenuOption value="Update Book Stock" text="Update Book Stock" />
+                                                    <MenuOption value="Get All Reviews" text="Get All Reviews" onSelect={() => navigation.navigate('ReviewScreen',{bookId: item.book.isbn, username : "you will never guess what is here so yeah"})}/>
+                                                    <MenuOption value="Create Review" text="Create Review" onSelect={() => navigation.navigate('ReviewScreen',{bookId: item.book.isbn, username : textData})}/>
+                                                </MenuOptions>
+                                            </Menu>
+                                        )}
+                                        keyExtractor={(item, index) => index.toString()}
+                                        refreshing={refreshing}
+                                        onRefresh={handleRefresh}
+                                    />
                             </View>
                         </ScrollView>
                     </View>

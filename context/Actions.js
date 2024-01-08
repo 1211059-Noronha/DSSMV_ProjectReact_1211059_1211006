@@ -132,8 +132,8 @@ export const FETCH_DELETE_LIBRARY_SUCCESS = 'FETCH_DELETE_LIBRARY_SUCCESS';
 export const FETCH_DELETE_LIBRARY_FAILURE = 'FETCH_DELETE_LIBRARY_FAILURE';
 
 export function fetchDeleteLibrary(url,request,dispatch){
-  const success = (res) => dispatch(fetchPutLibrarySuccess(res));
-  const failure = (err) => dispatch(fetchPutLibraryFailure(err.message));
+  const success = (res) => dispatch(fetchDeleteLibrarySuccess(res));
+  const failure = (err) => dispatch(fetchDeleteLibraryFailure(err.message));
   makeHTTPRequest(url,request,success,failure);
 }
 

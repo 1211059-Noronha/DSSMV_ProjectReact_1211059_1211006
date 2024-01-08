@@ -38,6 +38,7 @@
     "react-native-screens": "^3.29.0",
     "react-native-vector-icons": "^10.0.3",
     "react-navigation": "^5.0.0",
+    "state-pool": "^0.10.0",
     "swr": "^2.2.4"
   },
   "devDependencies": {
