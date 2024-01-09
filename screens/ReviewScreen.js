@@ -26,8 +26,6 @@ const ReviewScreen = ({route,navigation}) => {
     const [refreshing,setRefreshing] = useState(false)
 
 
-    if (username === "you will never guess what is here so yeah"){
-
         const handleRefresh = () => {
             dispatch(fetchGetAllReviewsStarted());
             const url = `${URL_API}/book/`+bookId+"/review";
@@ -104,15 +102,7 @@ const ReviewScreen = ({route,navigation}) => {
                 }
             }
         }
-    } else {
-        //Create Review
-        return(
-            <View style={styles.container}>
 
-            </View>
-        )
-
-    }
 
 
 

@@ -5,6 +5,7 @@ import {
     View, Text, StyleSheet, ScrollView, FlatList, TextInput, Alert
 } from "react-native";
 import Menu, {MenuOption, MenuOptions, MenuProvider, MenuTrigger} from "react-native-popup-menu";
+import axios from "axios";
 
 
 
@@ -27,7 +28,6 @@ const BookScreen = ({route,navigation}) => {
         const request = {};
         fetchGetAllBooks(url, request, dispatch);
     }
-
 
     useEffect(() => {
         dispatch(fetchGetAllBooksStarted());
@@ -86,11 +86,16 @@ const BookScreen = ({route,navigation}) => {
                                                     </View>
                                                 </MenuTrigger>
                                                 <MenuOptions>
-                                                    <MenuOption value="Add Book Stock" text="Add Book Stock"  />
-                                                    <MenuOption value="Update Book Stock" text="Update Book Stock" />
+                                                    <MenuOption value="Check In Book" text="Check In Book" onSelect={()=> {
+                                                        axios.post(`${URL_API}/library/${libraryId}/book/${item.book.isbn}}/checkout?userId=${username}`
+                                                        ).then(function (response) {
+                                                            console.log(response);
+                                                        }).catch(function (error) {
+                                                            console.log(error);
+                                                        });
+                                                    }} />
                                                     <MenuOption value="Get All Reviews" text="Get All Reviews" onSelect={() => navigation.navigate('ReviewScreen',{bookId: item.book.isbn, username : "you will never guess what is here so yeah"})}/>
-                                                    <MenuOption value="Create Review" text="Create Review" onSelect={() => navigation.navigate('ReviewScreen',{bookId: item.book.isbn, username : textData})}/>
-                                                </MenuOptions>
+                                                    </MenuOptions>
                                             </Menu>
                                         )}
                                         keyExtractor={(item, index) => index.toString()}

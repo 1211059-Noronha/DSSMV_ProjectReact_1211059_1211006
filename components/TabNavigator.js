@@ -14,6 +14,8 @@ import BookCheckoutScreen from "../screens/BookCheckoutScreen";
 import CheckoutStatusScreen from "../screens/CheckoutStatusScreen";
 import NotLoginScreen from "../screens/NotLoginScreen";
 import AddLibraryScreen from "../screens/AddLibraryScreen";
+import UpdateLibraryScreen from "../screens/UpdateLibraryScreen";
+import AddReviewScreen from "../screens/AddReviewScreen";
 
 
 //Screen names
@@ -31,6 +33,7 @@ const LibraryStack = () => {
             <Stack.Screen name="LibraryScreen" component={LibraryScreen} />
             <Stack.Screen name="BookScreen" component={BookScreen} />
             <Stack.Screen name="AddLibraryScreen" component={AddLibraryScreen}/>
+            <Stack.Screen name="UpdateLibraryScreen" component={UpdateLibraryScreen}/>
             <Stack.Screen name="ReviewScreen" component={ReviewScreen}/>
             <Stack.Screen name="DeleteLibrary" component={DeleteLibrary}/>
             <Stack.Screen name="BookCheckout" component={BookCheckoutScreen}/>
@@ -43,6 +46,7 @@ const HistoryStack = () => {
         <Stack.Navigator initialRouteName="HomeScreen" screenOptions={{headerShown: true}}>
             <Stack.Screen name="Insert Username" component={NotLoginScreen} />
             <Stack.Screen name="Checkout Status" component={CheckoutStatusScreen}/>
+            <Stack.Screen name="AddReviewScreen" component={AddReviewScreen}/>
         </Stack.Navigator>
     )
 }

@@ -16,11 +16,14 @@ import axios from "axios";
 
 
 
-const AddLibraryScreen = ({route,navigation}) => {
+const UpdateLibraryScreen = ({route,navigation}) => {
+
+    const { libraryId } = route.params;
 
     const { state, dispatch } = useContext(AppContext);
     const handleHttpRequest = () => {
-        axios.post(`${URL_API}/library`,{
+
+        axios.put(`${URL_API}/library/${libraryId}`,{
                 address: addressData,
                 closeTime : "20:00:00",
                 name : nameData,
@@ -111,4 +114,4 @@ const AddLibraryScreen = ({route,navigation}) => {
         </View>
     )
 }
-export default AddLibraryScreen;
+export default UpdateLibraryScreen;

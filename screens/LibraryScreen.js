@@ -85,7 +85,7 @@ const LibraryScreen = ({navigation}) => {
                                             </MenuTrigger>
                                             <MenuOptions>
                                                 <MenuOption value="Add Library" text="Add Library" onSelect={() => navigation.navigate('AddLibraryScreen')} />
-                                                <MenuOption value="Edit Library" text="Edit Library"  />
+                                                <MenuOption value="Edit Library" text="Edit Library" onSelect={() => navigation.navigate('UpdateLibraryScreen',{libraryId: item.id})} />
                                                 <MenuOption value="Delete Library" text="Delete Library"  onSelect={() => {
                                                         navigation.navigate('DeleteLibrary',{libraryId: item.id})
                                                     }

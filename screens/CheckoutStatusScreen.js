@@ -4,7 +4,7 @@ import {
     Text,
     StyleSheet,
     ScrollView,
-    FlatList, TextInput, Button, SectionList,
+    FlatList, TextInput, Button, SectionList, Alert,
 } from "react-native";
 import AppContext from "../context/AppContext";
 import {
@@ -12,6 +12,8 @@ import {
     fetchGetAllCheckedOutBooksStarted,
     fetchGetAllCheckedOutBooks, fetchGetAllCheckOutHistoryBooksStarted, fetchGetAllCheckOutHistoryBooks,
 } from "../context/Actions";
+import Menu, {MenuOption, MenuOptions, MenuTrigger} from "react-native-popup-menu";
+import axios from "axios";
 
 const CheckoutStatusScreen = ({ route, navigation }) => {
 
@@ -37,6 +39,7 @@ const CheckoutStatusScreen = ({ route, navigation }) => {
         const request2 = {};
         fetchGetAllCheckOutHistoryBooks(url2, request2, dispatch);
     }
+
 
     useEffect(() => {
 
@@ -86,11 +89,29 @@ const CheckoutStatusScreen = ({ route, navigation }) => {
                         <FlatList
                             data={data}
                             renderItem={({item , index}) => (
-                                <View style={styles.row}>
-                                    <Text style={[styles.cell, { width: 200 }]}>{item.book.title}</Text>
-                                    <Text style={[styles.cell, { width: 200 }]}>{item.book.isbn}</Text>
-                                    <Text style={[styles.cell, { width: 200 }]}>{item.libraryName}</Text>
-                                </View>
+                                <Menu onSelect={value => Alert.alert(value)}>
+                                    <MenuTrigger>
+                                        <View style={styles.row}>
+                                            <Text style={[styles.cell, { width: 200 }]}>{item.book.title}</Text>
+                                            <Text style={[styles.cell, { width: 200 }]}>{item.book.isbn}</Text>
+                                            <Text style={[styles.cell, { width: 200 }]}>{item.libraryName}</Text>
+                                        </View>
+                                    </MenuTrigger>
+                                    <MenuOptions>
+                                        <MenuOption value="Check In Book" text="Check In Book" onSelect={()=> {
+                                            axios.post(`${URL_API}/library/${item.libraryId}/book/${item.book.isbn}}/checkin?userId=${username}`
+                                            ).then(function (response) {
+                                                console.log(response);
+                                            }).catch(function (error) {
+                                                console.log(error);
+                                            });
+
+                                        }} />
+                                        <MenuOption value="Create Review" text="Create Review" onSelect={() => {
+                                            navigation.navigate('AddReviewScreen', {bookId : item.book.isbn}, username)}
+                                        }/>
+                                    </MenuOptions>
+                                </Menu>
                             )}
                             keyExtractor={(item, index) => index.toString()}
                             refreshing={refreshing}
@@ -107,11 +128,20 @@ const CheckoutStatusScreen = ({ route, navigation }) => {
                         <FlatList
                             data={data1}
                             renderItem={({item , index}) => (
-                                <View style={styles.row}>
-                                    <Text style={[styles.cell, { width: 200 }]}>{item.book.title}</Text>
-                                    <Text style={[styles.cell, { width: 200 }]}>{item.book.isbn}</Text>
-                                    <Text style={[styles.cell, { width: 200 }]}>{item.libraryName}</Text>
-                                </View>
+                                <Menu onSelect={value => Alert.alert(value)}>
+                                    <MenuTrigger>
+                                        <View style={styles.row}>
+                                            <Text style={[styles.cell, { width: 200 }]}>{item.book.title}</Text>
+                                            <Text style={[styles.cell, { width: 200 }]}>{item.book.isbn}</Text>
+                                            <Text style={[styles.cell, { width: 200 }]}>{item.libraryName}</Text>
+                                        </View>
+                                    </MenuTrigger>
+                                    <MenuOptions>
+                                        <MenuOption value="Create Review" text="Create Review" onSelect={() => {
+                                            navigation.navigate('AddReviewScreen', {bookId : item.book.isbn}, username)}
+                                        }/>
+                                    </MenuOptions>
+                                </Menu>
                             )}
                             keyExtractor={(item, index) => index.toString()}
                             refreshing={refreshing}
@@ -133,11 +163,29 @@ const CheckoutStatusScreen = ({ route, navigation }) => {
                     <FlatList
                         data={data}
                         renderItem={({ item, index }) => (
-                            <View style={styles.row}>
-                                <Text style={[styles.cell, { width: 200 }]}>{item.book.title}</Text>
-                                <Text style={[styles.cell, { width: 200 }]}>{item.book.isbn}</Text>
-                                <Text style={[styles.cell, { width: 200 }]}>{item.libraryName}</Text>
-                            </View>
+                            <Menu onSelect={value => Alert.alert(value)}>
+                                <MenuTrigger>
+                                    <View style={styles.row}>
+                                        <Text style={[styles.cell, { width: 200 }]}>{item.book.title}</Text>
+                                        <Text style={[styles.cell, { width: 200 }]}>{item.book.isbn}</Text>
+                                        <Text style={[styles.cell, { width: 200 }]}>{item.libraryName}</Text>
+                                    </View>
+                                </MenuTrigger>
+                                <MenuOptions>
+                                    <MenuOption value="Check In Book" text="Check In Book" onSelect={()=> {
+                                        axios.post(`${URL_API}/library/${item.libraryId}/book/${item.book.isbn}}/checkin?userId=${username}`
+                                        ).then(function (response) {
+                                            console.log(response);
+                                        }).catch(function (error) {
+                                            console.log(error);
+                                        });
+
+                                    }} />
+                                    <MenuOption value="Create Review" text="Create Review" onSelect={() => {
+                                        navigation.navigate('AddReviewScreen', {bookId : item.book.isbn}, username)}
+                                    }/>
+                                </MenuOptions>
+                            </Menu>
                         )}
                         keyExtractor={(item, index) => index.toString()}
                         refreshing={refreshing}
@@ -162,11 +210,20 @@ const CheckoutStatusScreen = ({ route, navigation }) => {
                         <FlatList
                             data={data1}
                             renderItem={({ item, index }) => (
-                                <View style={styles.row}>
-                                    <Text style={[styles.cell, { width: 200 }]}>{item.book.title}</Text>
-                                    <Text style={[styles.cell, { width: 200 }]}>{item.book.isbn}</Text>
-                                    <Text style={[styles.cell, { width: 200 }]}>{item.libraryName}</Text>
-                                </View>
+                                <Menu onSelect={value => Alert.alert(value)}>
+                                    <MenuTrigger>
+                                        <View style={styles.row}>
+                                            <Text style={[styles.cell, { width: 200 }]}>{item.book.title}</Text>
+                                            <Text style={[styles.cell, { width: 200 }]}>{item.book.isbn}</Text>
+                                            <Text style={[styles.cell, { width: 200 }]}>{item.libraryName}</Text>
+                                        </View>
+                                    </MenuTrigger>
+                                    <MenuOptions>
+                                        <MenuOption value="Create Review" text="Create Review" onSelect={() => {
+                                            navigation.navigate('AddReviewScreen', {bookId : item.book.isbn}, username)}
+                                        }/>
+                                    </MenuOptions>
+                                </Menu>
                             )}
                             keyExtractor={(item, index) => index.toString()}
                             refreshing={refreshing}
