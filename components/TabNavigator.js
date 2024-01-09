@@ -6,7 +6,6 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 // Screens
 import HomeScreen from '../screens/HomeScreen';
-import ManagementScreen from '../screens/ManagementScreen';
 import BookScreen from "../screens/BookScreen";
 import LibraryScreen from "../screens/LibraryScreen";
 import ReviewScreen from "../screens/ReviewScreen";
@@ -14,11 +13,11 @@ import DeleteLibrary from "../components/DeleteLibrary";
 import BookCheckoutScreen from "../screens/BookCheckoutScreen";
 import CheckoutStatusScreen from "../screens/CheckoutStatusScreen";
 import NotLoginScreen from "../screens/NotLoginScreen";
+import AddLibraryScreen from "../screens/AddLibraryScreen";
 
 
 //Screen names
 const homeName = "Home";
-const managementName = "Management";
 const libraryName = "Libraries"
 const checkHistName = "History"
 
@@ -31,6 +30,7 @@ const LibraryStack = () => {
         <Stack.Navigator initialRouteName="HomeScreen" screenOptions={{headerShown: true}}>
             <Stack.Screen name="LibraryScreen" component={LibraryScreen} />
             <Stack.Screen name="BookScreen" component={BookScreen} />
+            <Stack.Screen name="AddLibraryScreen" component={AddLibraryScreen}/>
             <Stack.Screen name="ReviewScreen" component={ReviewScreen}/>
             <Stack.Screen name="DeleteLibrary" component={DeleteLibrary}/>
             <Stack.Screen name="BookCheckout" component={BookCheckoutScreen}/>
@@ -59,9 +59,6 @@ function TabNavigator() {
                     if (rn === homeName) {
                         iconName = focused ? 'home' : 'home-outline';
 
-                    }else if (rn === managementName) {
-                        iconName = focused ? 'analytics' : 'analytics-outline';
-
                     }else if (rn === libraryName) {
                         iconName = focused ? 'list' : 'list-outline';
 
@@ -77,7 +74,6 @@ function TabNavigator() {
 
 
             <Tab.Screen options={{headerShown: false}} name={homeName} component={HomeScreen} />
-            <Tab.Screen options={{headerShown: false}} name={managementName} component={ManagementScreen} />
             <Tab.Screen options={{headerShown: false}} name={libraryName} component={LibraryStack} />
             <Tab.Screen options={{headerShown: false}} name={checkHistName} component={HistoryStack} />
         </Tab.Navigator>

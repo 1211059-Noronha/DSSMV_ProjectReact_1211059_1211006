@@ -23,7 +23,7 @@ const BookScreen = ({route,navigation}) => {
 
     const handleRefresh = () => {
         dispatch(fetchGetAllBooksStarted());
-        const url = `${URL_API}/library/`+libraryId+"/book";
+        const url = `http://193.136.62.24/v1/library/`+libraryId+"/book";
         const request = {};
         fetchGetAllBooks(url, request, dispatch);
     }

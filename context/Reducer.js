@@ -50,6 +50,7 @@ import {
 function reducer(state, action) {
 
   console.log(action)
+  console.log(state)
 
   switch (action.type) {
 

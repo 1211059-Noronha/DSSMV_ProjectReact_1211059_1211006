@@ -23,6 +23,9 @@ const ReviewScreen = ({route,navigation}) => {
     const { reviews } = state;
     const { loading, error, data } = reviews;
 
+    const [refreshing,setRefreshing] = useState(false)
+
+
     if (username === "you will never guess what is here so yeah"){
 
         const handleRefresh = () => {

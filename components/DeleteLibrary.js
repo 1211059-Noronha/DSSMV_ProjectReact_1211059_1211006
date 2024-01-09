@@ -24,6 +24,7 @@ const DeleteLibrary = ({route,navigation}) => {
         fetchDeleteLibrary(url, request, dispatch);
     }, []);
 
+
     if (loading === true) {
         return (
             <View style={styles.item}>
@@ -47,9 +48,7 @@ const DeleteLibrary = ({route,navigation}) => {
                         }}
                     >Deleted Library With Success</Text>
                 </View>
-
             )
-
         }
     }
 }
