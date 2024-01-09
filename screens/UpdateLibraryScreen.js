@@ -21,9 +21,24 @@ const UpdateLibraryScreen = ({route,navigation}) => {
     const { libraryId } = route.params;
 
     const { state, dispatch } = useContext(AppContext);
+
+    function insertString(str, index, value) {
+        return str.substr(0, index) + value + str.substr(index);
+    }
+
+    function converToUUID(_uuid){
+        _uuid = insertString(_uuid, 8, '-')
+        _uuid = insertString(_uuid, 13, '-')
+        _uuid = insertString(_uuid, 18, '-')
+        _uuid = insertString(_uuid, 23, '-')
+
+        return _uuid
+    }
+
+
     const handleHttpRequest = () => {
 
-        axios.put(`${URL_API}/library/${libraryId}`,{
+        axios.put(encodeURI(`${URL_API}/library/${converToUUID(libraryId)}`),{
                 address: addressData,
                 closeTime : "20:00:00",
                 name : nameData,

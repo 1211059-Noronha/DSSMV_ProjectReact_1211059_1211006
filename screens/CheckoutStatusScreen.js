@@ -30,12 +30,12 @@ const CheckoutStatusScreen = ({ route, navigation }) => {
 
     const handleRefresh = () => {
         dispatch(fetchGetAllCheckedOutBooksStarted());
-        const url1 = encodeURI(`${URL_API}/user/checked-out?userId=`+username);
+        const url1 = `${URL_API}/user/checked-out?userId=`+username;
         const request1 = {};
         fetchGetAllCheckedOutBooks(url1, request1, dispatch);
 
         dispatch(fetchGetAllCheckOutHistoryBooksStarted());
-        const url2 = encodeURI(`${URL_API}/user/checkout-history?userId=`+username);
+        const url2 = `${URL_API}/user/checkout-history?userId=`+username;
         const request2 = {};
         fetchGetAllCheckOutHistoryBooks(url2, request2, dispatch);
     }
@@ -45,14 +45,14 @@ const CheckoutStatusScreen = ({ route, navigation }) => {
 
          function getAllCheckOut(){
             dispatch(fetchGetAllCheckedOutBooksStarted());
-            const url1 = encodeURI(`${URL_API}/user/checked-out?userId=`+username);
+            const url1 = `${URL_API}/user/checked-out?userId=`+username;
             const request1 = {};
             fetchGetAllCheckedOutBooks(url1, request1, dispatch);
         }
 
          function getAllCheckOutHistory(){
             dispatch(fetchGetAllCheckOutHistoryBooksStarted());
-            const url2 = encodeURI(`${URL_API}/user/checkout-history?userId=`+username);
+            const url2 = `${URL_API}/user/checkout-history?userId=`+username;
             const request2 = {};
             fetchGetAllCheckOutHistoryBooks(url2, request2, dispatch);
         }
@@ -99,7 +99,22 @@ const CheckoutStatusScreen = ({ route, navigation }) => {
                                     </MenuTrigger>
                                     <MenuOptions>
                                         <MenuOption value="Check In Book" text="Check In Book" onSelect={()=> {
-                                            axios.post(`${URL_API}/library/${item.libraryId}/book/${item.book.isbn}}/checkin?userId=${username}`
+
+                                            function insertString(str, index, value) {
+                                                return str.substr(0, index) + value + str.substr(index);
+                                            }
+
+                                            function converToUUID(_uuid){
+                                                _uuid = insertString(_uuid, 8, '-')
+                                                _uuid = insertString(_uuid, 13, '-')
+                                                _uuid = insertString(_uuid, 18, '-')
+                                                _uuid = insertString(_uuid, 23, '-')
+
+                                                return _uuid
+                                            }
+
+
+                                            axios.post(encodeURI(`${URL_API}/library/${converToUUID(item.libraryId)}/book/${item.book.isbn}/checkin?userId=${username}`)
                                             ).then(function (response) {
                                                 console.log(response);
                                             }).catch(function (error) {
@@ -108,7 +123,7 @@ const CheckoutStatusScreen = ({ route, navigation }) => {
 
                                         }} />
                                         <MenuOption value="Create Review" text="Create Review" onSelect={() => {
-                                            navigation.navigate('AddReviewScreen', {bookId : item.book.isbn}, username)}
+                                            navigation.navigate('AddReviewScreen', {bookId : item.book.isbn,username : username})}
                                         }/>
                                     </MenuOptions>
                                 </Menu>
@@ -138,7 +153,7 @@ const CheckoutStatusScreen = ({ route, navigation }) => {
                                     </MenuTrigger>
                                     <MenuOptions>
                                         <MenuOption value="Create Review" text="Create Review" onSelect={() => {
-                                            navigation.navigate('AddReviewScreen', {bookId : item.book.isbn}, username)}
+                                            navigation.navigate('AddReviewScreen', {bookId : item.book.isbn, username : username})}
                                         }/>
                                     </MenuOptions>
                                 </Menu>
@@ -173,7 +188,7 @@ const CheckoutStatusScreen = ({ route, navigation }) => {
                                 </MenuTrigger>
                                 <MenuOptions>
                                     <MenuOption value="Check In Book" text="Check In Book" onSelect={()=> {
-                                        axios.post(`${URL_API}/library/${item.libraryId}/book/${item.book.isbn}}/checkin?userId=${username}`
+                                        axios.post(`${URL_API}/library/${item.libraryId}/book/${item.book.isbn}/checkin?userId=${username}`
                                         ).then(function (response) {
                                             console.log(response);
                                         }).catch(function (error) {
@@ -220,7 +235,7 @@ const CheckoutStatusScreen = ({ route, navigation }) => {
                                     </MenuTrigger>
                                     <MenuOptions>
                                         <MenuOption value="Create Review" text="Create Review" onSelect={() => {
-                                            navigation.navigate('AddReviewScreen', {bookId : item.book.isbn}, username)}
+                                            navigation.navigate('AddReviewScreen', {bookId : item.book.isbn, username : username})}
                                         }/>
                                     </MenuOptions>
                                 </Menu>

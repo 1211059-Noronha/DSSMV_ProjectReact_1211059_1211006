@@ -17,10 +17,26 @@ import axios from "axios";
 
 const AddReviewScreen = ({route,navigation}) => {
 
+    //i didnt send the username,but used the variable cause i just have the swag
+
     const { bookId , username} = route.params;
+
+    function insertString(str, index, value) {
+        return str.substr(0, index) + value + str.substr(index);
+    }
+
+    function converToUUID(_uuid){
+        _uuid = insertString(_uuid, 8, '-')
+        _uuid = insertString(_uuid, 13, '-')
+        _uuid = insertString(_uuid, 18, '-')
+        _uuid = insertString(_uuid, 23, '-')
+
+        return _uuid
+    }
+
     const handleHttpRequest = () => {
 
-        axios.post(`${URL_API}/library/${username}/book/${bookId}`,{
+        axios.post(encodeURI(`${URL_API}/library/${converToUUID(username)}/book/${bookId}`),{
                 stock: "5"
             },
             {headers: {

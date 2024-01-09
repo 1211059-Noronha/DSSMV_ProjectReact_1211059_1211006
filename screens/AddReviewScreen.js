@@ -19,8 +19,9 @@ const AddReviewScreen = ({route,navigation}) => {
 
     const { bookId , username} = route.params;
     const handleHttpRequest = () => {
-
-        axios.post(`${URL_API}/book/${bookId}?userId=${username}`,{
+        console.log(reviewData)
+        console.log(route.params)
+        axios.post(encodeURI(`${URL_API}/book/${bookId}/review?userId=${username}`),{
                 recommended: selectedRecommended,
                 review : reviewData,
             },

@@ -23,10 +23,14 @@ const BookScreen = ({route,navigation}) => {
     const [refreshing,setRefreshing] = useState(false)
 
     const handleRefresh = () => {
+        setRefreshing(true)
+
         dispatch(fetchGetAllBooksStarted());
         const url = `http://193.136.62.24/v1/library/`+libraryId+"/book";
         const request = {};
         fetchGetAllBooks(url, request, dispatch);
+
+        setRefreshing(false)
     }
 
     useEffect(() => {
@@ -87,7 +91,7 @@ const BookScreen = ({route,navigation}) => {
                                                 </MenuTrigger>
                                                 <MenuOptions>
                                                     <MenuOption value="Check In Book" text="Check In Book" onSelect={()=> {
-                                                        axios.post(`${URL_API}/library/${libraryId}/book/${item.book.isbn}}/checkout?userId=${username}`
+                                                        axios.post(`${URL_API}/library/${libraryId}/book/${item.book.isbn}}/checkout?userId=${this.username}`
                                                         ).then(function (response) {
                                                             console.log(response);
                                                         }).catch(function (error) {

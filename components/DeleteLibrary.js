@@ -45,8 +45,8 @@ const DeleteLibrary = ({route,navigation}) => {
                     <Text
                         onPress={()=> {
                             navigation.pop();
-                        }}
-                    >Deleted Library With Success</Text>
+                        }}>
+                        Deleted Library With Success</Text>
                 </View>
             )
         }

@@ -80,7 +80,7 @@ const ReviewScreen = ({route,navigation}) => {
                                                         </View>
                                                     </MenuTrigger>
                                                     <MenuOptions>
-                                                        <MenuOption value="Update Review" text="Update Review" />
+                                                        <MenuOption value="Update Review" text="Update Review (Not Implemented :( )" />
                                                     </MenuOptions>
                                                 </Menu>
                                             )}

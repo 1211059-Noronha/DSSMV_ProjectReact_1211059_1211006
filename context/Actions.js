@@ -19,7 +19,7 @@ export const FETCH_GET_ALL_LIBRARIES_FAILURE = 'FETCH_GET_ALL_LIBRARIES_FAILURE'
 export function fetchGetAllLibraries(url, request, dispatch){
   const success = (res) => dispatch(fetchGetAllLibrariesSuccess(res));
   const failure = (err) => dispatch(fetchGetAllLibrariesFailure(err.message));
-  makeHTTPRequest(url,request,success,failure);
+  makeHTTPRequest(encodeURI(url),request,success,failure);
 }
 
   //Get All Library States
@@ -57,7 +57,7 @@ export const FETCH_POST_LIBRARY_FAILURE = 'FETCH_POST_LIBRARY_FAILURE';
 export function fetchPostLibrary(url,request,dispatch){
   const success = (res) => dispatch(fetchPostLibrarySuccess(res));
   const failure = (err) => dispatch(fetchPostLibraryFailure(err.message));
-  makeHTTPRequest(url,request,success,failure);
+  makeHTTPRequest(encodeURI(url),request,success,failure);
 }
 
   //Post Library States
@@ -95,7 +95,7 @@ export const FETCH_PUT_LIBRARY_FAILURE = 'FETCH_PUT_LIBRARY_FAILURE';
 export function fetchPutLibrary(url,request,dispatch){
   const success = (res) => dispatch(fetchPutLibrarySuccess(res));
   const failure = (err) => dispatch(fetchPutLibraryFailure(err.message));
-  makeHTTPRequest(url,request,success,failure);
+  makeHTTPRequest(encodeURI(url),request,success,failure);
 }
 
 
@@ -134,7 +134,7 @@ export const FETCH_DELETE_LIBRARY_FAILURE = 'FETCH_DELETE_LIBRARY_FAILURE';
 export function fetchDeleteLibrary(url,request,dispatch){
   const success = (res) => dispatch(fetchDeleteLibrarySuccess(res));
   const failure = (err) => dispatch(fetchDeleteLibraryFailure(err.message));
-  makeHTTPRequest(url,request,success,failure);
+  makeHTTPRequest(encodeURI(url),request,success,failure);
 }
 
 
@@ -180,7 +180,7 @@ export const FETCH_GET_ALL_BOOKS_FAILURE = 'FETCH_GET_ALL_BOOKS_FAILURE';
 export function fetchGetAllBooks(url, request, dispatch){
   const success = (res) => dispatch(fetchGetAllBooksSuccess(res));
   const failure = (err) => dispatch(fetchGetAllBooksFailure(err.message));
-  makeHTTPRequest(url,request,success,failure);
+  makeHTTPRequest(encodeURI(url),request,success,failure);
 }
 
   //Get All Books States
@@ -218,7 +218,7 @@ export const FETCH_POST_BOOK_FAILURE = 'FETCH_POST_BOOK_FAILURE';
 export function fetchPostBook(url,request,dispatch){
   const success = (res) => dispatch(fetchPostBookSuccess(res));
   const failure = (err) => dispatch(fetchPostBookFailure(err.message));
-  makeHTTPRequest(url,request,success,failure);
+  makeHTTPRequest(encodeURI(url),request,success,failure);
 }
 
   //Post Book States
@@ -256,7 +256,7 @@ export const FETCH_PUT_BOOK_FAILURE = 'FETCH_PUT_BOOK_FAILURE';
 export function fetchPutBook(url,request,dispatch){
   const success = (res) => dispatch(fetchPutBookSuccess(res));
   const failure = (err) => dispatch(fetchPutBookFailure(err.message));
-  makeHTTPRequest(url,request,success,failure);
+  makeHTTPRequest(encodeURI(url),request,success,failure);
 }
 
 
@@ -301,7 +301,7 @@ export const FETCH_GET_ALL_REVIEWS_FAILURE = 'FETCH_GET_ALL_REVIEWS_FAILURE';
 export function fetchGetAllReviews(url, request, dispatch){
   const success = (res) => dispatch(fetchGetAllReviewsSuccess(res));
   const failure = (err) => dispatch(fetchGetAllReviewsFailure(err.message));
-  makeHTTPRequest(url,request,success,failure);
+  makeHTTPRequest(encodeURI(url),request,success,failure);
 }
 
   //Get All Reviews States
@@ -339,7 +339,7 @@ export const FETCH_POST_REVIEW_FAILURE = 'FETCH_POST_REVIEW_FAILURE';
 export function fetchPostReview(url,request,dispatch){
   const success = (res) => dispatch(fetchPostReviewSuccess(res));
   const failure = (err) => dispatch(fetchPostReviewFailure(err.message));
-  makeHTTPRequest(url,request,success,failure);
+  makeHTTPRequest(encodeURI(url),request,success,failure);
 }
 
   //Post Review States
@@ -377,7 +377,7 @@ export const FETCH_PUT_REVIEW_FAILURE = 'FETCH_PUT_REVIEW_FAILURE';
 export function fetchPutReview(url,request,dispatch){
   const success = (res) => dispatch(fetchPutReviewSuccess(res));
   const failure = (err) => dispatch(fetchPutReviewFailure(err.message));
-  makeHTTPRequest(url,request,success,failure);
+  makeHTTPRequest(encodeURI(url),request,success,failure);
 }
 
 
@@ -417,7 +417,7 @@ export const FETCH_CHECKOUT_BOOK_FAILURE = 'FETCH_CHECKOUT_BOOK_FAILURE';
 export function fetchCheckoutBook(url, request, dispatch) {
   dispatch(fetchCheckoutBookStarted());
 
-  fetch(url, {
+  fetch(encodeURI(url), {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -471,7 +471,7 @@ export const FETCH_GET_ALL_CHECKED_OUT_BOOKS_FAILURE = 'FETCH_GET_ALL_CHECKED_OU
 export function fetchGetAllCheckedOutBooks(url, request, dispatch) {
   const success = (res) => dispatch(fetchGetAllCheckedOutBooksSuccess(res));
   const failure = (err) => dispatch(fetchGetAllCheckedOutBooksFailure(err.message));
-  makeHTTPRequest(url, request, success, failure);
+  makeHTTPRequest(encodeURI(url), request, success, failure);
 
 }
 
@@ -508,7 +508,7 @@ export const FETCH_GET_ALL_CHECK_OUT_HISTORY_BOOKS_FAILURE = 'FETCH_GET_ALL_CHEC
 export function fetchGetAllCheckOutHistoryBooks(url, request, dispatch) {
   const success = (res) => dispatch(fetchGetAllCheckOutHistoryBooksSuccess(res));
   const failure = (err) => dispatch(fetchGetAllCheckOutHistoryBooksFailure(err.message));
-  makeHTTPRequest(url, request, success, failure);
+  makeHTTPRequest(encodeURI(url), request, success, failure);
 
 }
 

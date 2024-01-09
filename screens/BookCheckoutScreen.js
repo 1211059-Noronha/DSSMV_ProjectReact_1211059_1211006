@@ -33,8 +33,22 @@ const BookCheckoutScreen = ({ route, navigation }) => {
       ]);
     };
 
+    function insertString(str, index, value) {
+      return str.substr(0, index) + value + str.substr(index);
+    }
+
+    function converToUUID(_uuid){
+      _uuid = insertString(_uuid, 8, '-')
+      _uuid = insertString(_uuid, 13, '-')
+      _uuid = insertString(_uuid, 18, '-')
+      _uuid = insertString(_uuid, 23, '-')
+
+      return _uuid
+    }
+
+
     const handleCheckoutConfirmed = (book) => {
-      const checkoutUrl = `${URL_API}/library/${libraryId}/book/${book.book.id}/checkout`;
+      const checkoutUrl = `${URL_API}/library/${converToUUID(libraryId)}/book/${book.book.id}/checkout`;
       const checkoutRequest = {}; // Add any additional data needed for checkout
       fetchCheckoutBook(checkoutUrl, checkoutRequest, dispatch);
     };
