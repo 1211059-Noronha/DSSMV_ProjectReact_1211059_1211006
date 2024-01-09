@@ -16,6 +16,7 @@ import NotLoginScreen from "../screens/NotLoginScreen";
 import AddLibraryScreen from "../screens/AddLibraryScreen";
 import UpdateLibraryScreen from "../screens/UpdateLibraryScreen";
 import AddReviewScreen from "../screens/AddReviewScreen";
+import EditBookScreen from "../screens/EditBookScreen";
 
 
 //Screen names
@@ -37,6 +38,7 @@ const LibraryStack = () => {
             <Stack.Screen name="ReviewScreen" component={ReviewScreen}/>
             <Stack.Screen name="DeleteLibrary" component={DeleteLibrary}/>
             <Stack.Screen name="BookCheckout" component={BookCheckoutScreen}/>
+            <Stack.Screen name="EditBookQuantityScreen" component={EditBookScreen}/>
         </Stack.Navigator>
     )
 }

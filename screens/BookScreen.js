@@ -95,7 +95,8 @@ const BookScreen = ({route,navigation}) => {
                                                         });
                                                     }} />
                                                     <MenuOption value="Get All Reviews" text="Get All Reviews" onSelect={() => navigation.navigate('ReviewScreen',{bookId: item.book.isbn, username : "you will never guess what is here so yeah"})}/>
-                                                    </MenuOptions>
+                                                    <MenuOption value="Edit Book Quantity" text="Edit Book Quantity" onSelect={() => navigation.navigate('EditBookQuantityScreen',{bookId: item.book.isbn, username : libraryId})}/>
+                                                </MenuOptions>
                                             </Menu>
                                         )}
                                         keyExtractor={(item, index) => index.toString()}
