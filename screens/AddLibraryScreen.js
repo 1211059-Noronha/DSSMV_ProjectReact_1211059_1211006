@@ -53,7 +53,7 @@ const AddLibraryScreen = ({route,navigation}) => {
         <View>
             <ScrollView>
                 <Text
-                    style={{fontSize: 20, fontWeight: 'bold'}}>Name</Text>
+                    style={{fontSize: 20, fontWeight: 'bold', color:"#000000"}}>Name</Text>
                 <TextInput
                     onChangeText={(text) => {
                         setNameData(text);
@@ -61,7 +61,7 @@ const AddLibraryScreen = ({route,navigation}) => {
                     value={nameData}
                 />
                 <Text
-                    style={{fontSize: 20, fontWeight: 'bold'}}>Address</Text>
+                    style={{fontSize: 20, fontWeight: 'bold', color:"#000000"}}>Address</Text>
                 <TextInput
                     onChangeText={(text) => {
                         setAddressData(text);
@@ -69,7 +69,7 @@ const AddLibraryScreen = ({route,navigation}) => {
                     value={addressData}
                 />
                 <Text
-                    style={{fontSize: 20, fontWeight: 'bold'}}>Open Day</Text>
+                    style={{fontSize: 20, fontWeight: 'bold', color:"#000000"}}>Open Day</Text>
                 <Picker
                     selectedValue={selectedOpenDay}
                     onValueChange={(selectedOpenDay, itemIndex) =>
@@ -86,7 +86,7 @@ const AddLibraryScreen = ({route,navigation}) => {
                     <Picker.Item label="Sunday" value="Sunday"/>
                 </Picker>
                 <Text
-                    style={{fontSize: 20, fontWeight: 'bold'}}>Close Day</Text>
+                    style={{fontSize: 20, fontWeight: 'bold', color:"#000000"}}>Close Day</Text>
                 <Picker
                     selectedValue={selectedCloseDay}
                     onValueChange={(selectedCloseDay, itemIndex) =>
@@ -102,9 +102,9 @@ const AddLibraryScreen = ({route,navigation}) => {
                     <Picker.Item label="Saturday" value="Saturday"/>
                     <Picker.Item label="Sunday" value="Sunday"/>
                 </Picker>
-                <Text style={{fontWeight:'bold', fontSize:20}}>Open Time</Text>
+                <Text style={{fontWeight:'bold', fontSize:20, color:"#000000"}}>Open Time</Text>
                 <DatePicker mode={"time"} onDateChange={setOpenTime}  date={openTime}/>
-                <Text style={{fontWeight:'bold', fontSize:20}}>Close Time</Text>
+                <Text style={{fontWeight:'bold', fontSize:20, color:"#000000"}}>Close Time</Text>
                 <DatePicker mode={"time"} onDateChange={setCloseTime}  date={closeTime}/>
                 <Button onPress={handleHttpRequest} title="Submit"/>
             </ScrollView>

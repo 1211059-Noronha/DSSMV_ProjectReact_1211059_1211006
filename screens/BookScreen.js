@@ -43,7 +43,7 @@ const BookScreen = ({route,navigation}) => {
     if (loading === true) {
         return (
             <View style={styles.item}>
-                <Text>Loading Books</Text>
+                <Text style={{color:"#000000"}}>Loading Books</Text>
             </View>
         );
     }
@@ -51,7 +51,7 @@ const BookScreen = ({route,navigation}) => {
         if (error !== null) {
             return (
                 <View style={styles.item}>
-                    <Text>Error</Text>
+                    <Text style={{color:"#000000"}}>Error</Text>
                 </View>
             );
         } else {
@@ -90,16 +90,22 @@ const BookScreen = ({route,navigation}) => {
                                                     </View>
                                                 </MenuTrigger>
                                                 <MenuOptions>
-                                                    <MenuOption value="Check In Book" text="Check In Book" onSelect={()=> {
+                                                    <MenuOption value="Check In Book" onSelect={()=> {
                                                         axios.post(`${URL_API}/library/${libraryId}/book/${item.book.isbn}}/checkout?userId=${this.username}`
                                                         ).then(function (response) {
                                                             console.log(response);
                                                         }).catch(function (error) {
                                                             console.log(error);
                                                         });
-                                                    }} />
-                                                    <MenuOption value="Get All Reviews" text="Get All Reviews" onSelect={() => navigation.navigate('ReviewScreen',{bookId: item.book.isbn, username : "you will never guess what is here so yeah"})}/>
-                                                    <MenuOption value="Edit Book Quantity" text="Edit Book Quantity" onSelect={() => navigation.navigate('EditBookQuantityScreen',{bookId: item.book.isbn, username : libraryId})}/>
+                                                    }} >
+                                                        <Text style={[styles.cell]}>Check In Book</Text>
+                                                    </MenuOption>
+                                                    <MenuOption value="Get All Reviews" onSelect={() => navigation.navigate('ReviewScreen',{bookId: item.book.isbn, username : "you will never guess what is here so yeah"})}>
+                                                        <Text style={[styles.cell]}>Get All Reviews</Text>
+                                                    </MenuOption>
+                                                    <MenuOption value="Edit Book Quantity" onSelect={() => navigation.navigate('EditBookQuantityScreen',{bookId: item.book.isbn, username : libraryId})}>
+                                                        <Text style={[styles.cell]}>Edit Book Quantity</Text>
+                                                    </MenuOption>
                                                 </MenuOptions>
                                             </Menu>
                                         )}
@@ -114,7 +120,7 @@ const BookScreen = ({route,navigation}) => {
             } else {
                 return (
                     <View style={styles.item}>
-                        <Text>There are no Books in this library</Text>
+                        <Text style={{color:"#000000"}}>There are no Books in this library</Text>
                     </View>
                 );
             }
@@ -140,13 +146,13 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 20,
         borderBottomWidth: 1,
-        borderBottomColor: "#e1e1e1"
+        borderBottomColor: "#000000",
     },
     headerText: {
         fontFamily: "Gill Sans",
         fontSize: 15,
         flex: 1,
-
+        color: '#000000'
     },
     row: {
         flexDirection: 'row',
@@ -163,6 +169,7 @@ const styles = StyleSheet.create({
         fontFamily: "Gill Sans",
         fontSize: 14,
         flex: 1,
+        color: '#000000'
     },
     item: {
         justifyContent: 'center',
@@ -170,5 +177,9 @@ const styles = StyleSheet.create({
         fontFamily: "Gill Sans",
         fontSize: 30,
         flex: 1,
+        color: '#000000'
+    },
+    box: {
+        color: '#000000'
     }
 })

@@ -59,14 +59,15 @@ const AddReviewScreen = ({route,navigation}) => {
         <View>
             <ScrollView>
                 <Text
-                    style={{fontSize: 20, fontWeight: 'bold'}}>Review</Text>
+                    style={{fontSize: 20, fontWeight: 'bold', color:'#000000'}}>Review</Text>
                 <TextInput
+                    style={{color:"#000000"}}
                     onChangeText={(text) => {
                         setStock(parseInt(text));
                     }}
                     value={parseInt(stock)}
                 />
-                <Button onPress={handleHttpRequest} title="Submit"/>
+                <Button onPress={handleHttpRequest} title="Submit" style={{color:"#000000"}}/>
             </ScrollView>
         </View>
     )

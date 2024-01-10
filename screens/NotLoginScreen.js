@@ -18,7 +18,7 @@ const NotLoginScreen = ({ route, navigation }) => {
                 setTextData(text);
             }}
         />
-        <Button title={"LogIn"} onPress={() => {
+        <Button title={"LogIn"} style={{color:"#000000"}} onPress={() => {
             navigation.navigate("Checkout Status",{username: textData})
         }}></Button>
         </View>
@@ -37,17 +37,21 @@ const styles = StyleSheet.create({
     listContainer: {
         flex: 1,
     },
+    box: {
+      color: "#000000"
+    },
     header: {
         flexDirection: "row",
         paddingVertical: 10,
         paddingHorizontal: 20,
         borderBottomWidth: 1,
-        borderBottomColor: "#e1e1e1",
+        borderBottomColor: "#000000",
     },
     headerText: {
         fontFamily: "Gill Sans",
         fontSize: 15,
         flex: 1,
+        color: "#000000"
     },
     row: {
         flexDirection: "row",
@@ -71,5 +75,6 @@ const styles = StyleSheet.create({
         fontFamily: "Gill Sans",
         fontSize: 30,
         flex: 1,
+        color: "#000000"
     },
 });

@@ -27,6 +27,20 @@ const CheckoutStatusScreen = ({ route, navigation }) => {
 
     const [refreshing,setRefreshing] = useState(false)
 
+    function insertString(str, index, value) {
+        return str.substr(0, index) + value + str.substr(index);
+    }
+
+    function converToUUID(_uuid){
+        _uuid = insertString(_uuid, 8, '-')
+        _uuid = insertString(_uuid, 13, '-')
+        _uuid = insertString(_uuid, 18, '-')
+        _uuid = insertString(_uuid, 23, '-')
+
+        return _uuid
+    }
+
+
 
     const handleRefresh = () => {
         dispatch(fetchGetAllCheckedOutBooksStarted());
@@ -68,13 +82,13 @@ const CheckoutStatusScreen = ({ route, navigation }) => {
     if (loading === true && loading1 === true) {
         return (
             <View style={styles.item}>
-                <Text>Loading</Text>
+                <Text style={{color:"#000000"}}>Loading </Text>
             </View>
         );
     } else if (error !== null && error1 !== null) {
         return (
             <View style={styles.item}>
-                <Text>Error</Text>
+                <Text style={{color:"#000000"}}>Error</Text>
             </View>
         );
     } else if (data.length > 0 && data1.length > 0) {
@@ -98,33 +112,21 @@ const CheckoutStatusScreen = ({ route, navigation }) => {
                                         </View>
                                     </MenuTrigger>
                                     <MenuOptions>
-                                        <MenuOption value="Check In Book" text="Check In Book" onSelect={()=> {
-
-                                            function insertString(str, index, value) {
-                                                return str.substr(0, index) + value + str.substr(index);
-                                            }
-
-                                            function converToUUID(_uuid){
-                                                _uuid = insertString(_uuid, 8, '-')
-                                                _uuid = insertString(_uuid, 13, '-')
-                                                _uuid = insertString(_uuid, 18, '-')
-                                                _uuid = insertString(_uuid, 23, '-')
-
-                                                return _uuid
-                                            }
-
-
+                                        <MenuOption value="Check In Book"  onSelect={()=> {
                                             axios.post(encodeURI(`${URL_API}/library/${converToUUID(item.libraryId)}/book/${item.book.isbn}/checkin?userId=${username}`)
                                             ).then(function (response) {
                                                 console.log(response);
                                             }).catch(function (error) {
                                                 console.log(error);
                                             });
-
-                                        }} />
-                                        <MenuOption value="Create Review" text="Create Review" onSelect={() => {
+                                        }} >
+                                            <Text style={[styles.cell]}>Check In Book</Text>
+                                        </MenuOption>
+                                        <MenuOption value="Create Review"  onSelect={() => {
                                             navigation.navigate('AddReviewScreen', {bookId : item.book.isbn,username : username})}
-                                        }/>
+                                        }>
+                                            <Text style={[styles.cell]}>Create Review</Text>
+                                        </MenuOption>
                                     </MenuOptions>
                                 </Menu>
                             )}
@@ -152,9 +154,11 @@ const CheckoutStatusScreen = ({ route, navigation }) => {
                                         </View>
                                     </MenuTrigger>
                                     <MenuOptions>
-                                        <MenuOption value="Create Review" text="Create Review" onSelect={() => {
+                                        <MenuOption value="Create Review" onSelect={() => {
                                             navigation.navigate('AddReviewScreen', {bookId : item.book.isbn, username : username})}
-                                        }/>
+                                        }>
+                                            <Text style={[styles.cell]}>Create Review</Text>
+                                        </MenuOption>
                                     </MenuOptions>
                                 </Menu>
                             )}
@@ -187,18 +191,22 @@ const CheckoutStatusScreen = ({ route, navigation }) => {
                                     </View>
                                 </MenuTrigger>
                                 <MenuOptions>
-                                    <MenuOption value="Check In Book" text="Check In Book" onSelect={()=> {
-                                        axios.post(`${URL_API}/library/${item.libraryId}/book/${item.book.isbn}/checkin?userId=${username}`
+                                    <MenuOption value="Check In Book" onSelect={()=> {
+                                        axios.post(encodeURI(`${URL_API}/library/${converToUUID(item.libraryId)}/book/${item.book.isbn}/checkin?userId=${username}`)
                                         ).then(function (response) {
                                             console.log(response);
                                         }).catch(function (error) {
                                             console.log(error);
                                         });
 
-                                    }} />
-                                    <MenuOption value="Create Review" text="Create Review" onSelect={() => {
+                                    }}>
+                                        <Text style={[styles.cell]}>Check In Book</Text>
+                                    </MenuOption>
+                                    <MenuOption value="Create Review" onSelect={() => {
                                         navigation.navigate('AddReviewScreen', {bookId : item.book.isbn}, username)}
-                                    }/>
+                                    }>
+                                        <Text style={[styles.cell]}>Create Review</Text>
+                                    </MenuOption>
                                 </MenuOptions>
                             </Menu>
                         )}
@@ -234,9 +242,11 @@ const CheckoutStatusScreen = ({ route, navigation }) => {
                                         </View>
                                     </MenuTrigger>
                                     <MenuOptions>
-                                        <MenuOption value="Create Review" text="Create Review" onSelect={() => {
+                                        <MenuOption value="Create Review" onSelect={() => {
                                             navigation.navigate('AddReviewScreen', {bookId : item.book.isbn, username : username})}
-                                        }/>
+                                        }>
+                                            <Text style={[styles.cell]}>Create Review</Text>
+                                        </MenuOption>
                                     </MenuOptions>
                                 </Menu>
                             )}
@@ -271,12 +281,14 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
         paddingHorizontal: 20,
         borderBottomWidth: 1,
-        borderBottomColor: "#e1e1e1"
+        borderBottomColor: "#000000",
+        color : "#000000"
     },
     headerText: {
         fontFamily: "Gill Sans",
         fontSize: 15,
         flex: 1,
+        color: "#000000"
     },
     row: {
         flexDirection: 'row',
@@ -293,6 +305,7 @@ const styles = StyleSheet.create({
         fontFamily: "Gill Sans",
         fontSize: 14,
         flex: 1,
+        color: "#000000"
     },
     item: {
         justifyContent: 'center',

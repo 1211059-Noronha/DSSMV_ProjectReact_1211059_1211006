@@ -45,7 +45,7 @@ const AddReviewScreen = ({route,navigation}) => {
         <View>
             <ScrollView>
                 <Text
-                    style={{fontSize: 20, fontWeight: 'bold'}}>Do you Recommend?</Text>
+                    style={{fontSize: 20, fontWeight: 'bold', color:"#000000"}}>Do you Recommend?</Text>
                 <Picker
                     selectedValue={selectedRecommended}
                     onValueChange={(selectedRecommended, itemIndex) =>
@@ -53,11 +53,11 @@ const AddReviewScreen = ({route,navigation}) => {
                     }
                     value={selectedRecommended}
                 >
-                    <Picker.Item label="Yes" value={false}/>
-                    <Picker.Item label="No" value={false}/>
+                    <Picker.Item label="Yes" value={false} style={{color:"#000000"}}/>
+                    <Picker.Item label="No" value={false} style={{color:"#000000"}}/>
                 </Picker>
                 <Text
-                    style={{fontSize: 20, fontWeight: 'bold'}}>Review</Text>
+                    style={{fontSize: 20, fontWeight: 'bold', color:"#000000"}}>Review</Text>
                 <TextInput
                     onChangeText={(text) => {
                         setReviewData(text);

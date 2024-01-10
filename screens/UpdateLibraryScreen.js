@@ -71,60 +71,64 @@ const UpdateLibraryScreen = ({route,navigation}) => {
         <View>
             <ScrollView>
                 <Text
-                    style={{fontSize: 20, fontWeight: 'bold'}}>Name</Text>
+                    style={{fontSize: 20, fontWeight: 'bold', color: "#000000"}}>Name</Text>
                 <TextInput
+                    style={{color:"#000000"}}
                     onChangeText={(text) => {
                         setNameData(text);
                     }}
                     value={nameData}
                 />
                 <Text
-                    style={{fontSize: 20, fontWeight: 'bold'}}>Address</Text>
+                    style={{fontSize: 20, fontWeight: 'bold',color:"#000000"}}>Address</Text>
                 <TextInput
+                    style={{color:"#000000"}}
                     onChangeText={(text) => {
                         setAddressData(text);
                     }}
                     value={addressData}
                 />
                 <Text
-                    style={{fontSize: 20, fontWeight: 'bold'}}>Open Day</Text>
+                    style={{fontSize: 20, fontWeight: 'bold',color:"#000000"}}>Open Day</Text>
                 <Picker
+                    style={{color:"#000000"}}
                     selectedValue={selectedOpenDay}
                     onValueChange={(selectedOpenDay, itemIndex) =>
                         setSelectedOpenDay(selectedOpenDay)
                     }
                     value={selectedOpenDay}
                 >
-                    <Picker.Item label="Monday" value="Monday"/>
-                    <Picker.Item label="Tuesday" value="Tuesday"/>
-                    <Picker.Item label="Wednesday" value="Wednesday"/>
-                    <Picker.Item label="Thursday" value="Thursday"/>
-                    <Picker.Item label="Friday" value="Friday"/>
-                    <Picker.Item label="Saturday" value="Saturday"/>
-                    <Picker.Item label="Sunday" value="Sunday"/>
+                    <Picker.Item label="Monday" value="Monday" style={{color:"#000000"}}/>
+                    <Picker.Item label="Tuesday" value="Tuesday" style={{color:"#000000"}}/>
+                    <Picker.Item label="Wednesday" value="Wednesday" style={{color:"#000000"}}/>
+                    <Picker.Item label="Thursday" value="Thursday" style={{color:"#000000"}}/>
+                    <Picker.Item label="Friday" value="Friday" style={{color:"#000000"}}/>
+                    <Picker.Item label="Saturday" value="Saturday" style={{color:"#000000"}}/>
+                    <Picker.Item label="Sunday" value="Sunday" style={{color:"#000000"}}/>
                 </Picker>
                 <Text
-                    style={{fontSize: 20, fontWeight: 'bold'}}>Close Day</Text>
+                    style={{fontSize: 20, fontWeight: 'bold',color:"#000000"}}>Close Day</Text>
                 <Picker
+                    style={{color:"#000000"}}
                     selectedValue={selectedCloseDay}
                     onValueChange={(selectedCloseDay, itemIndex) =>
                         setSelectedCloseDay(selectedCloseDay)
                     }
                     value={selectedCloseDay}
                 >
-                    <Picker.Item label="Monday" value="Monday"/>
-                    <Picker.Item label="Tuesday" value="Tuesday"/>
-                    <Picker.Item label="Wednesday" value="Wednesday"/>
-                    <Picker.Item label="Thursday" value="Thursday"/>
-                    <Picker.Item label="Friday" value="Friday"/>
-                    <Picker.Item label="Saturday" value="Saturday"/>
-                    <Picker.Item label="Sunday" value="Sunday"/>
+                    <Picker.Item label="Monday" value="Monday" style={{color:"#000000"}}/>
+                    <Picker.Item label="Tuesday" value="Tuesday" style={{color:"#000000"}}/>
+                    <Picker.Item label="Wednesday" value="Wednesday" style={{color:"#000000"}}/>
+                    <Picker.Item label="Thursday" value="Thursday" style={{color:"#000000"}}/>
+                    <Picker.Item label="Friday" value="Friday" style={{color:"#000000"}}/>
+                    <Picker.Item label="Saturday" value="Saturday" style={{color:"#000000"}}/>
+                    <Picker.Item label="Sunday" value="Sunday" style={{color:"#000000"}}/>
                 </Picker>
-                <Text style={{fontWeight:'bold', fontSize:20}}>Open Time</Text>
-                <DatePicker mode={"time"} onDateChange={setOpenTime}  date={openTime}/>
-                <Text style={{fontWeight:'bold', fontSize:20}}>Close Time</Text>
-                <DatePicker mode={"time"} onDateChange={setCloseTime}  date={closeTime}/>
-                <Button onPress={handleHttpRequest} title="Submit"/>
+                <Text style={{fontWeight:'bold', fontSize:20,color:"#000000"}}>Open Time</Text>
+                <DatePicker mode={"time"} onDateChange={setOpenTime}  date={openTime} style={{color:"#000000"}}/>
+                <Text style={{fontWeight:'bold', fontSize:20,color:"#000000"}}>Close Time</Text>
+                <DatePicker mode={"time"} onDateChange={setCloseTime}  date={closeTime} style={{color:"#000000"}}/>
+                <Button onPress={handleHttpRequest} title="Submit" style={{color:"#000000"}}/>
             </ScrollView>
         </View>
     )

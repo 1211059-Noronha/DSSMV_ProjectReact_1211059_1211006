@@ -6,7 +6,7 @@ export default function HomeScreen() {
             <Image source={{uri:'https://uxwing.com/wp-content/themes/uxwing/download/education-school/library-icon.png'}}
                 style = {{ width: 200, height: 200 }}/>
             <Text
-                style={{ fontSize: 40, fontWeight: 'bold' }}>TrandBer</Text>
+                style={{ fontSize: 40, fontWeight: 'bold' , color: "#000000"}}>TrandBer</Text>
         </View>
 
     );
